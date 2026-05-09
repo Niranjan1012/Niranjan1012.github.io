@@ -10,7 +10,7 @@
     <style>
         /* === Elegant Light Theme Variables === */
         :root {
-            --bg-color: #f8f9fa; /* Off-white background */
+            --bg-color: #ffffff; /* Plain white background */
             --text-main: #334155; /* Slate grey for body text */
             --text-heading: #0f172a; /* Deep navy/black for headings */
             --text-muted: #64748b; /* Lighter grey for dates and subtext */
@@ -67,6 +67,17 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+        }
+
+        /* Profile Image Styling */
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
         }
 
         .header-content h1 {
@@ -238,7 +249,7 @@
                 padding: 4rem 0 0 0;
             }
             nav {
-                display: none; /* Hide side navigation on small screens */
+                display: none; 
             }
             main {
                 width: 100%;
@@ -263,9 +274,11 @@
         
         <header>
             <div class="header-content">
-                <h1>Niranjan Shrestha</h1>
-                <h2>Electrical Engineer & Power Electronics Enthusiast</h2>
-                <p>Building high-efficiency power converters, leading hardware validation, and advancing wireless EV charging technologies[cite: 4, 6, 64].</p>
+                <img src="nian.jpeg" alt="Niranjan Shrestha" class="profile-img">
+                
+                <h1>Niranjan Shrestha [cite: 1]</h1>
+                <h2>Electrical Engineer & Power Electronics Enthusiast [cite: 4]</h2>
+                <p>Building high-efficiency power converters, leading hardware validation, and advancing wireless EV charging technologies. [cite: 4, 5, 6]</p>
                 
                 <nav>
                     <ul>
@@ -277,8 +290,8 @@
             </div>
             
             <div class="contact-info">
-                Oshawa, ON L1L 0W3 [cite: 2] <br>
-                niranjan.stha10@gmail.com [cite: 2] <br>
+                1012-2545 Simcoe St N, Oshawa, ON L1L 0W3 [cite: 2]<br>
+                niranjan.stha10@gmail.com [cite: 2]<br>
                 (905) 922-7620 [cite: 2]
             </div>
         </header>
@@ -288,32 +301,32 @@
             <section id="about">
                 <h3>About Me</h3>
                 <p>I am a results-driven Power Electronics enthusiast with over 4 years of experience specializing in power electronics and the design of high- and low-frequency power converters as well as control systems design[cite: 61]. I completed my Master of Applied Science in Electrical and Computer Engineering at Ontario Tech University, with my thesis focused on wireless charging, power converter design & development, hybrid compensation network and control system design[cite: 62].</p>
-                <p>My technical expertise spans across circuit and system-level modeling using MATLAB, PLECS, and LTspice [cite: 65], alongside deep practical experience in hardware testing, root-cause analysis, and writing validation test plans[cite: 66]. I am seeking a suitable role to leverage my knowledge in design and development projects while ensuring technical integrity and complying with relevant automotive and WPT standards[cite: 6, 68].</p>
+                <p>My technical expertise spans across circuit and system-level modeling using MATLAB, PLECS, and LTspice, alongside deep practical experience in hardware testing, root-cause analysis, and writing validation test plans[cite: 65, 66]. I am seeking a suitable role to leverage my knowledge in design and development projects while ensuring technical integrity and complying with relevant automotive and WPT standards[cite: 6, 68].</p>
                 
                 <div class="skills-container" style="margin-top: 1.5rem;">
-                    <span class="skill-tag">Power Electronics</span>
-                    <span class="skill-tag">MATLAB Simulink</span>
-                    <span class="skill-tag">KiCad</span>
-                    <span class="skill-tag">LTspice</span>
-                    <span class="skill-tag">PLECS</span>
-                    <span class="skill-tag">C/C++</span>
-                    <span class="skill-tag">STM32 / TI Microcontrollers</span>
+                    <span class="skill-tag">Power Electronics [cite: 11]</span>
+                    <span class="skill-tag">MATLAB Simulink [cite: 15]</span>
+                    <span class="skill-tag">KiCad [cite: 15]</span>
+                    <span class="skill-tag">LTspice [cite: 15]</span>
+                    <span class="skill-tag">PLECS [cite: 15]</span>
+                    <span class="skill-tag">C/C++ [cite: 15]</span>
+                    <span class="skill-tag">STM32 / TI Microcontrollers [cite: 15]</span>
                 </div>
             </section>
 
             <section id="experience">
-                <h3>Experience</h3>
+                <h3>Experience [cite: 17]</h3>
                 
                 <div class="experience-item">
                     <div class="experience-date">May 2024 — Present [cite: 20]</div>
                     <div class="experience-details">
-                        <h4>Electrical Engineer</h4>
-                        <h5>Wireless PnC Inc. · Victoria, BC [cite: 18, 19]</h5>
+                        <h4>Electrical Engineer [cite: 18]</h4>
+                        <h5>Wireless PnC Inc. · Victoria, British Columbia [cite: 19]</h5>
                         <ul>
-                            <li>Design, modeling, simulation, and control development of power converters for wireless power transfer systems for E-scooters, E-bikes, and EVs up to 7.7 kW[cite: 21].</li>
-                            <li>Mentoring and supervising electrical interns for simulation, hardware design, and test validation[cite: 24].</li>
-                            <li>PCB design and fabrication of Boost PFC rectifiers and Inverters[cite: 25].</li>
-                            <li>Writing validation test plans and supporting vehicle-level bench testing[cite: 28].</li>
+                            <li>Design, modeling, simulation, and control development of power converters for wireless power transfer systems for E-scooters, E-bikes, and EVs up to 7.7 kW. [cite: 21]</li>
+                            <li>Mentoring and supervising electrical interns for simulation, hardware design, and test validation. [cite: 24]</li>
+                            <li>PCB design and fabrication of Boost PFC rectifiers and Inverters. [cite: 25]</li>
+                            <li>Writing validation test plans and supporting vehicle-level bench testing. [cite: 28]</li>
                         </ul>
                     </div>
                 </div>
@@ -321,12 +334,12 @@
                 <div class="experience-item">
                     <div class="experience-date">Jan 2022 — Apr 2024 [cite: 31]</div>
                     <div class="experience-details">
-                        <h4>Graduate Research Assistant</h4>
-                        <h5>Ontario Tech University · Oshawa, ON [cite: 29, 30]</h5>
+                        <h4>Graduate Research Assistant [cite: 29]</h4>
+                        <h5>Ontario Tech University · Oshawa, Ontario [cite: 30]</h5>
                         <ul>
-                            <li>Completion of end-to-end R&D of a high-efficiency resonant WPT system funded by NSERC and MITACS[cite: 31].</li>
-                            <li>Design, modeling, and development of DC-DC converters, inverters, rectifiers, and resonant converters[cite: 32].</li>
-                            <li>Experimental testing and validation of WPT systems with various coil configurations[cite: 33].</li>
+                            <li>Completion of end-to-end R&D of a high-efficiency resonant WPT system funded by NSERC and MITACS. [cite: 31]</li>
+                            <li>Design, modeling, and development of DC-DC converters, inverters, rectifiers, and resonant converters. [cite: 32]</li>
+                            <li>Experimental testing and validation of WPT systems with various coil configurations. [cite: 33]</li>
                         </ul>
                     </div>
                 </div>
@@ -334,11 +347,11 @@
                 <div class="experience-item">
                     <div class="experience-date">Jun 2022 — Apr 2023 [cite: 35]</div>
                     <div class="experience-details">
-                        <h4>Electrical Engineering Intern</h4>
-                        <h5>Oshawa Power · Oshawa, ON [cite: 34, 35]</h5>
+                        <h4>Electrical Engineering Intern [cite: 35]</h4>
+                        <h5>Oshawa Power · Oshawa, Ontario [cite: 34]</h5>
                         <ul>
-                            <li>Created regression models to forecast energy production and revenue generation from solar PV and wind turbine systems[cite: 36].</li>
-                            <li>Reviewed and approved major equipment based on compliance with industry standards[cite: 38].</li>
+                            <li>Created regression models to forecast energy production and revenue generation from solar PV and wind turbine systems. [cite: 36]</li>
+                            <li>Reviewed and approved major equipment based on compliance with industry standards. [cite: 38]</li>
                         </ul>
                     </div>
                 </div>
@@ -346,23 +359,23 @@
                 <div class="experience-item">
                     <div class="experience-date">Nov 2019 — Dec 2021 [cite: 41]</div>
                     <div class="experience-details">
-                        <h4>Project Engineer</h4>
-                        <h5>Sunshine Energy Pvt. Ltd. · Kathmandu, Nepal [cite: 39, 40]</h5>
+                        <h4>Project Engineer [cite: 39]</h4>
+                        <h5>Sunshine Energy Pvt. Ltd. · Kathmandu, Nepal [cite: 40]</h5>
                         <ul>
-                            <li>Site survey, overall system design, cost estimation, and tender document preparation for off-grid and on-grid solar PV systems[cite: 42].</li>
+                            <li>Site survey, overall system design, cost estimation, and tender document preparation for off-grid and on-grid solar PV systems. [cite: 42]</li>
                         </ul>
                     </div>
                 </div>
             </section>
 
             <section id="education">
-                <h3>Education & Honors</h3>
+                <h3>Education & Honors [cite: 7, 57]</h3>
                 
                 <div class="experience-item" style="margin-bottom: 2rem;">
                     <div class="experience-date">Jan 2022 — Apr 2024 [cite: 13]</div>
                     <div class="experience-details">
                         <h4>Master of Applied Science (Electrical and Computer Engineering) [cite: 8]</h4>
-                        <h5>Ontario Tech University · Oshawa, ON [cite: 8]</h5>
+                        <h5>Ontario Tech University · Oshawa, Ontario [cite: 8]</h5>
                         <p style="font-size: 0.95rem;">Research area: Wireless charging, power converter and control design [cite: 9]</p>
                     </div>
                 </div>
@@ -376,7 +389,7 @@
                 </div>
 
                 <div class="experience-details" style="width: 100%; margin-top: 2rem;">
-                    <h4>Awards & Recognition</h4>
+                    <h4>Awards & Recognition [cite: 57]</h4>
                     <ul>
                         <li>IEEE ITEC Student Travel Award Recipient (2023) [cite: 58]</li>
                         <li>ITEC Coil Winding Competition Winner (1st Runner-up) (2023) [cite: 58]</li>
