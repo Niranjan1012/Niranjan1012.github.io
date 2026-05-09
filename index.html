@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Niranjan Shrestha | Power Electronics Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <title>Niranjan Shrestha | Electrical Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* === Cyberpunk Variables === */
+        /* === Elegant Light Theme Variables === */
         :root {
-            --bg-color: #050505;
-            --panel-bg: rgba(16, 20, 30, 0.6);
-            --neon-blue: #00f3ff;
-            --neon-purple: #bc13fe;
-            --text-main: #e0e6ed;
-            --text-muted: #8a9bb2;
-            --font-heading: 'Rajdhani', sans-serif;
-            --font-mono: 'Share Tech Mono', monospace;
+            --bg-color: #f8f9fa; /* Off-white background */
+            --text-main: #334155; /* Slate grey for body text */
+            --text-heading: #0f172a; /* Deep navy/black for headings */
+            --text-muted: #64748b; /* Lighter grey for dates and subtext */
+            --accent-color: #1e3a8a; /* Professional navy blue accent */
+            --accent-light: #eff6ff; /* Very light blue for skill tags */
+            --font-main: 'Inter', sans-serif;
         }
 
         * {
@@ -24,266 +25,367 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: var(--font-main);
             background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(0, 243, 255, 0.08), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(188, 19, 254, 0.08), transparent 25%);
             color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* === Glassmorphism Panels === */
-        .glass-panel {
-            background: var(--panel-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 243, 255, 0.1);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
         }
 
-        .glass-panel:hover {
-            border-color: rgba(0, 243, 255, 0.4);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
-            transform: translateY(-2px);
+        a:hover {
+            color: var(--text-heading);
         }
 
-        /* === Typography === */
-        h1, h2, h3 {
-            font-family: var(--font-heading);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        h2 {
-            font-size: 2rem;
-            color: var(--neon-blue);
-            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
-        }
-
-        h3 {
-            font-size: 1.4rem;
-            color: #ffffff;
-            margin-bottom: 0.3rem;
-        }
-
-        .tech-text {
-            font-family: var(--font-mono);
-            color: var(--neon-purple);
-            font-size: 0.9rem;
-        }
-
-        /* === Layout === */
-        .container {
-            max-width: 1100px;
+        /* === Layout structure: Split Screen === */
+        .layout {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 4rem;
+            padding: 0 3rem;
         }
 
-        /* === Hero Section === */
+        /* === Left Sidebar (Sticky) === */
         header {
-            text-align: center;
-            padding: 5rem 0;
-            position: relative;
+            width: 40%;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            padding: 6rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        header h1 {
-            font-size: 4rem;
+        .header-content h1 {
+            font-size: 3rem;
             font-weight: 700;
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            color: var(--text-heading);
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+
+        .header-content h2 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--text-heading);
             margin-bottom: 1rem;
         }
 
-        header p {
-            font-family: var(--font-mono);
-            font-size: 1.2rem;
+        .header-content p {
+            color: var(--text-muted);
+            max-width: 320px;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-bottom: 1rem;
+        }
+
+        nav ul li a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a::before {
+            content: '';
+            display: inline-block;
+            width: 30px;
+            height: 1px;
+            background-color: var(--text-muted);
+            margin-right: 15px;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        nav ul li a:hover::before {
+            width: 50px;
+            background-color: var(--accent-color);
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .contact-info {
+            font-size: 0.9rem;
             color: var(--text-muted);
         }
 
-        /* === Bento Grid (Skills) === */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+        /* === Right Content Area (Scrolling) === */
+        main {
+            width: 55%;
+            padding: 6rem 0;
+        }
+
+        section {
+            margin-bottom: 6rem;
+        }
+
+        section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-heading);
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* === Experience Items === */
+        .experience-item {
+            display: flex;
             margin-bottom: 3rem;
+            transition: all 0.3s ease;
         }
 
-        ul {
-            list-style-type: none;
-            margin-top: 1rem;
+        .experience-date {
+            width: 25%;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding-top: 0.25rem;
         }
 
-        ul li {
+        .experience-details {
+            width: 75%;
+        }
+
+        .experience-details h4 {
+            font-size: 1.1rem;
+            color: var(--text-heading);
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+
+        .experience-details h5 {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .experience-details ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .experience-details ul li {
             position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.8rem;
+            padding-left: 1.25rem;
+            margin-bottom: 0.75rem;
             font-size: 0.95rem;
         }
 
-        ul li::before {
-            content: '>';
+        .experience-details ul li::before {
+            content: '▹';
             position: absolute;
             left: 0;
-            color: var(--neon-blue);
-            font-family: var(--font-mono);
-            font-weight: bold;
+            color: var(--accent-color);
         }
 
-        /* === Cyber Timeline (Experience) === */
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-            margin-bottom: 3rem;
+        /* === Skills / Tags === */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--neon-blue), var(--neon-purple));
-            box-shadow: 0 0 10px var(--neon-blue);
+        .skill-tag {
+            background-color: var(--accent-light);
+            color: var(--accent-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.35rem;
-            top: 0.4rem;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--bg-color);
-            border: 2px solid var(--neon-blue);
-            box-shadow: 0 0 10px var(--neon-blue);
-        }
-
-        /* === Responsive === */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5rem;
+        /* === Mobile Responsiveness === */
+        @media (max-width: 900px) {
+            .layout {
+                flex-direction: column;
+                gap: 2rem;
+                padding: 0 1.5rem;
             }
-            .container {
-                padding: 1rem;
+            header {
+                width: 100%;
+                height: auto;
+                position: static;
+                padding: 4rem 0 0 0;
+            }
+            nav {
+                display: none; /* Hide side navigation on small screens */
+            }
+            main {
+                width: 100%;
+                padding: 2rem 0;
+            }
+            .experience-item {
+                flex-direction: column;
+            }
+            .experience-date {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+            .experience-details {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="layout">
+        
         <header>
-            <h1>Niranjan Shrestha </h1>
-            <p>SYSTEM.INITIALIZE: Electrical Engineer & Power Electronics Enthusiast </p>
-            <div class="tech-text" style="margin-top: 1rem;">
-                OSHAWA, ON // STATUS: ONLINE // LINK_ACTIVE
+            <div class="header-content">
+                <h1>Niranjan Shrestha</h1>
+                <h2>Electrical Engineer & Power Electronics Enthusiast</h2>
+                <p>Building high-efficiency power converters, leading hardware validation, and advancing wireless EV charging technologies[cite: 4, 6, 64].</p>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#education">Education & Awards</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <div class="contact-info">
+                Oshawa, ON L1L 0W3 [cite: 2] <br>
+                niranjan.stha10@gmail.com [cite: 2] <br>
+                (905) 922-7620 [cite: 2]
             </div>
         </header>
 
-        <section class="glass-panel" style="margin-bottom: 3rem;">
-            <h2>> Executive Summary</h2>
-            <p>Results-driven and self-motivated Electrical Engineer with 4+ years of experience. Specializing in high-frequency/low-frequency power converter design, circuit modeling, and hardware testing. I hold a Master of Applied Science in Electrical and Computer Engineering from Ontario Tech University, with a core focus on wireless charging, power converter design & development, and hybrid compensation network topologies.</p>
-        </section>
+        <main>
+            
+            <section id="about">
+                <h3>About Me</h3>
+                <p>I am a results-driven Power Electronics enthusiast with over 4 years of experience specializing in power electronics and the design of high- and low-frequency power converters as well as control systems design[cite: 61]. I completed my Master of Applied Science in Electrical and Computer Engineering at Ontario Tech University, with my thesis focused on wireless charging, power converter design & development, hybrid compensation network and control system design[cite: 62].</p>
+                <p>My technical expertise spans across circuit and system-level modeling using MATLAB, PLECS, and LTspice [cite: 65], alongside deep practical experience in hardware testing, root-cause analysis, and writing validation test plans[cite: 66]. I am seeking a suitable role to leverage my knowledge in design and development projects while ensuring technical integrity and complying with relevant automotive and WPT standards[cite: 6, 68].</p>
+                
+                <div class="skills-container" style="margin-top: 1.5rem;">
+                    <span class="skill-tag">Power Electronics</span>
+                    <span class="skill-tag">MATLAB Simulink</span>
+                    <span class="skill-tag">KiCad</span>
+                    <span class="skill-tag">LTspice</span>
+                    <span class="skill-tag">PLECS</span>
+                    <span class="skill-tag">C/C++</span>
+                    <span class="skill-tag">STM32 / TI Microcontrollers</span>
+                </div>
+            </section>
 
-        <h2 style="padding-left: 1rem;">> Core Directives & Skills</h2>
-        <div class="bento-grid">
-            <div class="glass-panel">
-                <h3>Hardware & Power</h3>
-                <ul>
-                    <li>Lead designer for high-efficiency 7.7 kW wireless EV charging systems.</li>
-                    <li>Designed 100 W wireless charging systems for E-scooters.</li>
-                    <li>Expert in PCB design (KiCad), TI/STM32 microcontrollers, and C/C++ programming.</li>
-                </ul>
-            </div>
-            <div class="glass-panel">
-                <h3>Simulation & Modeling</h3>
-                <ul>
-                    <li>Circuit and system-level modeling using MATLAB (M-language/Simulink).</li>
-                    <li>Proficient in PLECS, LTspice, and Proteus Design Suite.</li>
-                    <li>Created regression models to forecast energy production for solar and wind generation systems.</li>
-                </ul>
-            </div>
-            <div class="glass-panel">
-                <h3>Standards & Compliance</h3>
-                <ul>
-                    <li>Knowledgeable in WPT standards (SAE, CSA, UL) and automotive industry guidelines.</li>
-                    <li>Root-cause analysis, validation test plans, and vehicle-level bench testing.</li>
-                </ul>
-            </div>
-        </div>
+            <section id="experience">
+                <h3>Experience</h3>
+                
+                <div class="experience-item">
+                    <div class="experience-date">May 2024 — Present [cite: 20]</div>
+                    <div class="experience-details">
+                        <h4>Electrical Engineer</h4>
+                        <h5>Wireless PnC Inc. · Victoria, BC [cite: 18, 19]</h5>
+                        <ul>
+                            <li>Design, modeling, simulation, and control development of power converters for wireless power transfer systems for E-scooters, E-bikes, and EVs up to 7.7 kW[cite: 21].</li>
+                            <li>Mentoring and supervising electrical interns for simulation, hardware design, and test validation[cite: 24].</li>
+                            <li>PCB design and fabrication of Boost PFC rectifiers and Inverters[cite: 25].</li>
+                            <li>Writing validation test plans and supporting vehicle-level bench testing[cite: 28].</li>
+                        </ul>
+                    </div>
+                </div>
 
-        <h2 style="padding-left: 1rem;">> Operational History</h2>
-        <div class="timeline">
-            <div class="timeline-item glass-panel">
-                <h3>Electrical Engineer</h3>
-                <div class="tech-text">Wireless PnC Inc. | Victoria, BC | May 2024 - Present </div>
-                <ul>
-                    <li>Design, modeling, simulation, and control of power converters for wireless power transfer systems (E-scooters, E-bikes, EVs up to 7.7 kW).</li>
-                    <li>PCB design and fabrication of different converters including Boost PFC rectifiers and Inverters.</li>
-                    <li>Mentoring and supervising electrical interns for simulation, hardware design, and test validation.</li>
-                </ul>
-            </div>
+                <div class="experience-item">
+                    <div class="experience-date">Jan 2022 — Apr 2024 [cite: 31]</div>
+                    <div class="experience-details">
+                        <h4>Graduate Research Assistant</h4>
+                        <h5>Ontario Tech University · Oshawa, ON [cite: 29, 30]</h5>
+                        <ul>
+                            <li>Completion of end-to-end R&D of a high-efficiency resonant WPT system funded by NSERC and MITACS[cite: 31].</li>
+                            <li>Design, modeling, and development of DC-DC converters, inverters, rectifiers, and resonant converters[cite: 32].</li>
+                            <li>Experimental testing and validation of WPT systems with various coil configurations[cite: 33].</li>
+                        </ul>
+                    </div>
+                </div>
 
-            <div class="timeline-item glass-panel">
-                <h3>Graduate Research Assistant</h3>
-                <div class="tech-text">Ontario Tech University | Oshawa, ON | Jan 2022 - Apr 2024 </div>
-                <ul>
-                    <li>End-to-end R&D of a high-efficiency resonant WPT system funded by NSERC and MITACS.</li>
-                    <li>Design, modeling, and simulation of DC-DC converters, inverters, rectifiers, and resonant converters.</li>
-                    <li>Experimental testing and validation of WPT systems with various coil configurations.</li>
-                </ul>
-            </div>
+                <div class="experience-item">
+                    <div class="experience-date">Jun 2022 — Apr 2023 [cite: 35]</div>
+                    <div class="experience-details">
+                        <h4>Electrical Engineering Intern</h4>
+                        <h5>Oshawa Power · Oshawa, ON [cite: 34, 35]</h5>
+                        <ul>
+                            <li>Created regression models to forecast energy production and revenue generation from solar PV and wind turbine systems[cite: 36].</li>
+                            <li>Reviewed and approved major equipment based on compliance with industry standards[cite: 38].</li>
+                        </ul>
+                    </div>
+                </div>
 
-            <div class="timeline-item glass-panel">
-                <h3>Electrical Engineering Intern</h3>
-                <div class="tech-text">Oshawa Power | Oshawa, ON | Jun 2022 - Apr 2023 </div>
-                <ul>
-                    <li>Created regression models to forecast energy production from solar PV and wind turbine systems.</li>
-                    <li>Reviewed and approved major/non-major equipment based on compliance with industry standards.</li>
-                </ul>
-            </div>
-        </div>
+                <div class="experience-item">
+                    <div class="experience-date">Nov 2019 — Dec 2021 [cite: 41]</div>
+                    <div class="experience-details">
+                        <h4>Project Engineer</h4>
+                        <h5>Sunshine Energy Pvt. Ltd. · Kathmandu, Nepal [cite: 39, 40]</h5>
+                        <ul>
+                            <li>Site survey, overall system design, cost estimation, and tender document preparation for off-grid and on-grid solar PV systems[cite: 42].</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-        <h2 style="padding-left: 1rem;">> Academic Archives & Honors</h2>
-        <div class="bento-grid">
-            <div class="glass-panel">
-                <h3>Education</h3>
-                <ul>
-                    <li><strong>M.A.Sc. Electrical & Computer Engineering</strong><br>Ontario Tech University (Jan 2022 - Apr 2024) </li>
-                    <li><strong>B.E. Electrical Engineering</strong><br>Tribhuvan University, Pulchowk Campus (Nov 2013 - Sep 2017) </li>
-                </ul>
-            </div>
-            <div class="glass-panel">
-                <h3>Awards</h3>
-                <ul>
-                    <li>IEEE ITEC Student Travel Award Recipient (2023) </li>
-                    <li>ITEC Coil Winding Competition Winner, 1st Runner-up (2023) </li>
-                    <li>IEEE SPEC Scholarship Award (2022) </li>
-                </ul>
-            </div>
-        </div>
-        
-        <footer style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(0, 243, 255, 0.2);">
-            <p class="tech-text">END OF TRANSMISSION // &copy; 2026 Niranjan Shrestha</p>
-        </footer>
+            <section id="education">
+                <h3>Education & Honors</h3>
+                
+                <div class="experience-item" style="margin-bottom: 2rem;">
+                    <div class="experience-date">Jan 2022 — Apr 2024 [cite: 13]</div>
+                    <div class="experience-details">
+                        <h4>Master of Applied Science (Electrical and Computer Engineering) [cite: 8]</h4>
+                        <h5>Ontario Tech University · Oshawa, ON [cite: 8]</h5>
+                        <p style="font-size: 0.95rem;">Research area: Wireless charging, power converter and control design [cite: 9]</p>
+                    </div>
+                </div>
+
+                <div class="experience-item" style="margin-bottom: 2rem;">
+                    <div class="experience-date">Nov 2013 — Sep 2017 [cite: 14]</div>
+                    <div class="experience-details">
+                        <h4>Bachelor's Degree (Electrical Engineering) [cite: 10]</h4>
+                        <h5>Tribhuvan University, Pulchowk Campus · Lalitpur, Nepal [cite: 10]</h5>
+                    </div>
+                </div>
+
+                <div class="experience-details" style="width: 100%; margin-top: 2rem;">
+                    <h4>Awards & Recognition</h4>
+                    <ul>
+                        <li>IEEE ITEC Student Travel Award Recipient (2023) [cite: 58]</li>
+                        <li>ITEC Coil Winding Competition Winner (1st Runner-up) (2023) [cite: 58]</li>
+                        <li>IEEE SPEC Scholarship Award (2022) [cite: 58]</li>
+                    </ul>
+                </div>
+            </section>
+            
+        </main>
     </div>
 
 </body>
