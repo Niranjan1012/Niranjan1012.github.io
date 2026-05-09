@@ -3,232 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Niranjan Shrestha - Portfolio [cite: 1]</title>
+    <title>Niranjan Shrestha | Power Electronics Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
-        /* === CSS Variables & Reset === */
+        /* === Cyberpunk Variables === */
         :root {
-            --primary-color: #0056b3;
-            --secondary-color: #333333;
-            --bg-color: #f4f7f6;
-            --text-color: #555555;
-            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --bg-color: #050505;
+            --panel-bg: rgba(16, 20, 30, 0.6);
+            --neon-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+            --text-main: #e0e6ed;
+            --text-muted: #8a9bb2;
+            --font-heading: 'Rajdhani', sans-serif;
+            --font-mono: 'Share Tech Mono', monospace;
         }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: var(--font-main);
-            line-height: 1.6;
-            color: var(--text-color);
+            font-family: 'Arial', sans-serif;
             background-color: var(--bg-color);
-        }
-        a {
-            text-decoration: none;
-            color: var(--primary-color);
-        }
-        
-        /* === Header / Hero Section === */
-        header {
-            background-color: var(--secondary-color);
-            color: #ffffff;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        header p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 1.5rem auto;
-            color: #dddddd;
-        }
-        .contact-info {
-            font-size: 0.9rem;
-            color: #bbbbbb;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 243, 255, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(188, 19, 254, 0.08), transparent 25%);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* === Main Content Sections === */
-        section {
-            padding: 3rem 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #ffffff;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        /* === Glassmorphism Panels === */
+        .glass-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 243, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
-        section h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
+
+        .glass-panel:hover {
+            border-color: rgba(0, 243, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* === Typography === */
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--neon-blue);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-        
-        /* === Grid Layouts === */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
         }
 
-        /* === Experience & Education Items === */
-        .timeline-item {
-            margin-bottom: 1.5rem;
-        }
-        .timeline-item h3 {
-            color: var(--secondary-color);
-            font-size: 1.2rem;
-        }
-        .timeline-item h4 {
-            font-style: italic;
-            color: #777;
-            margin-bottom: 0.5rem;
-        }
-        .timeline-item ul {
-            margin-left: 1.5rem;
-        }
-
-        /* === Footer === */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: var(--secondary-color);
+        h3 {
+            font-size: 1.4rem;
             color: #ffffff;
-            margin-top: 2rem;
+            margin-bottom: 0.3rem;
         }
 
-        /* === Responsive Design (Mobile) === */
+        .tech-text {
+            font-family: var(--font-mono);
+            color: var(--neon-purple);
+            font-size: 0.9rem;
+        }
+
+        /* === Layout === */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* === Hero Section === */
+        header {
+            text-align: center;
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        /* === Bento Grid (Skills) === */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        ul {
+            list-style-type: none;
+            margin-top: 1rem;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        ul li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--neon-blue);
+            font-family: var(--font-mono);
+            font-weight: bold;
+        }
+
+        /* === Cyber Timeline (Experience) === */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--neon-blue), var(--neon-purple));
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 0.4rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        /* === Responsive === */
         @media (max-width: 768px) {
-            .grid-2 {
-                grid-template-columns: 1fr;
+            header h1 {
+                font-size: 2.5rem;
             }
-            header {
-                padding: 3rem 1rem;
+            .container {
+                padding: 1rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Niranjan Shrestha [cite: 1]</h1>
-        <p>Results-driven Electrical Engineer and Power Electronics Enthusiast [cite: 4]</p>
-        <div class="contact-info">
-            1012-2545 Simcoe St N, Oshawa, ON L1L 0W3 [cite: 2] | 
-            niranjan.stha10@gmail.com [cite: 2] | 
-            (905) 922-7620 [cite: 2]
+    <div class="container">
+        <header>
+            <h1>Niranjan Shrestha [cite: 1]</h1>
+            <p>SYSTEM.INITIALIZE: Electrical Engineer & Power Electronics Enthusiast [cite: 4]</p>
+            <div class="tech-text" style="margin-top: 1rem;">
+                OSHAWA, ON [cite: 2] // STATUS: ONLINE // LINK_ACTIVE
+            </div>
+        </header>
+
+        <section class="glass-panel" style="margin-bottom: 3rem;">
+            <h2>> Executive Summary</h2>
+            <p>Results-driven and self-motivated Electrical Engineer with 4+ years of experience[cite: 4]. Specializing in high-frequency/low-frequency power converter design, circuit modeling, and hardware testing[cite: 4]. I hold a Master of Applied Science in Electrical and Computer Engineering from Ontario Tech University [cite: 8], with a core focus on wireless charging, power converter design & development, and hybrid compensation network topologies[cite: 62].</p>
+        </section>
+
+        <h2 style="padding-left: 1rem;">> Core Directives & Skills</h2>
+        <div class="bento-grid">
+            <div class="glass-panel">
+                <h3>Hardware & Power</h3>
+                <ul>
+                    <li>Lead designer for high-efficiency 7.7 kW wireless EV charging systems[cite: 5, 64].</li>
+                    <li>Designed 100 W wireless charging systems for E-scooters[cite: 64].</li>
+                    <li>Expert in PCB design (KiCad), TI/STM32 microcontrollers, and C/C++ programming[cite: 67].</li>
+                </ul>
+            </div>
+            <div class="glass-panel">
+                <h3>Simulation & Modeling</h3>
+                <ul>
+                    <li>Circuit and system-level modeling using MATLAB (M-language/Simulink)[cite: 65].</li>
+                    <li>Proficient in PLECS, LTspice, and Proteus Design Suite[cite: 15, 65].</li>
+                    <li>Created regression models to forecast energy production for solar and wind generation systems[cite: 36].</li>
+                </ul>
+            </div>
+            <div class="glass-panel">
+                <h3>Standards & Compliance</h3>
+                <ul>
+                    <li>Knowledgeable in WPT standards (SAE, CSA, UL) and automotive industry guidelines[cite: 27, 68].</li>
+                    <li>Root-cause analysis, validation test plans, and vehicle-level bench testing[cite: 26, 28].</li>
+                </ul>
+            </div>
         </div>
-    </header>
 
-    <main>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>I am a results-driven Power Electronics enthusiast with over 4 years of experience specializing in power electronics and the design of high- and low-frequency power converters as well as control systems design[cite: 61]. I completed my Master of Applied Science in Electrical and Computer Engineering at Ontario Tech University, with my thesis focused on wireless charging, power converter design & development, hybrid compensation network and control system design[cite: 62]. Seeking a suitable role to leverage my knowledge and skills in power electronics design and development projects, circuit modeling and simulation, and hardware testing and validation[cite: 6].</p>
-        </section>
-
-        <section id="expertise">
-            <h2>Core Expertise & Skills</h2>
-            <div class="grid-2">
-                <div>
-                    <h3>Technical Expertise</h3>
-                    <ul>
-                        <li><strong>Power Electronics:</strong> Lead designer for high-efficiency 7.7 kW wireless EV charging systems, 100 W wireless charging system for E-scooters[cite: 64].</li>
-                        <li><strong>Modeling & Simulation:</strong> Expert in circuit and system-level modeling using MATLAB (M-language/Simulink), PLECS, LTspice, and Proteus[cite: 65].</li>
-                        <li><strong>Hardware Validation:</strong> Extensive experience in hardware testing, root-cause analysis, and writing validation test plans[cite: 66].</li>
-                        <li><strong>PCB & Embedded Systems:</strong> Proficient in PCB design (KiCad), TI and STM32 microcontroller applications, and M-language and C/C++ programming[cite: 67].</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Software & Standards</h3>
-                    <ul>
-                        <li><strong>Standards:</strong> WPT standards (SAE, CSA, UL) [cite: 15], BS 7671:2008 [cite: 47], IEC[cite: 68].</li>
-                        <li><strong>Tools:</strong> AutoCAD, COMPASS, MS Office, RT-LAB, OPAL-RT[cite: 15].</li>
-                        <li><strong>Soft Skills:</strong> Quick learning, analytical problem-solving, critical thinking, team player, communication, initiative, leadership, and adaptability[cite: 16].</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="experience">
-            <h2>Professional Experience</h2>
-            
-            <div class="timeline-item">
+        <h2 style="padding-left: 1rem;">> Operational History</h2>
+        <div class="timeline">
+            <div class="timeline-item glass-panel">
                 <h3>Electrical Engineer</h3>
-                <h4>Wireless PnC Inc. | Victoria, British Columbia | May 2024 - Present [cite: 18, 19, 20]</h4>
+                <div class="tech-text">Wireless PnC Inc. | Victoria, BC | May 2024 - Present [cite: 18, 19, 20]</div>
                 <ul>
-                    <li>Design, modeling, simulation (circuit level and system level), control, and development of power converters for wireless power transfer systems for E-scooters, E-bikes, and Evs (up to 7.7 kW)[cite: 21].</li>
-                    <li>Mentoring and supervising electrical interns for simulation, hardware design, end-to-end development, and test validation for a 7.7 kW wireless charging system[cite: 24].</li>
-                    <li>PCB design and fabrication of different converters (Boost PFC rectifier, Inverter, etc)[cite: 25].</li>
+                    <li>Design, modeling, simulation, and control of power converters for wireless power transfer systems (E-scooters, E-bikes, EVs up to 7.7 kW)[cite: 21].</li>
+                    <li>PCB design and fabrication of different converters including Boost PFC rectifiers and Inverters[cite: 25].</li>
+                    <li>Mentoring and supervising electrical interns for simulation, hardware design, and test validation[cite: 24].</li>
                 </ul>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item glass-panel">
                 <h3>Graduate Research Assistant</h3>
-                <h4>Ontario Tech University | Oshawa, Ontario | Jan 2022 - Apr 2024 [cite: 29, 30, 31]</h4>
+                <div class="tech-text">Ontario Tech University | Oshawa, ON | Jan 2022 - Apr 2024 [cite: 29, 30, 31]</div>
                 <ul>
-                    <li>Completion of end-to-end R&D of a high-efficiency resonant WPT system funded by NSERC and MITACS in collaboration with an industry partner[cite: 31].</li>
-                    <li>Design, modeling, simulation, control, and development of power converters, including DC-DC converters, inverters, rectifiers, and resonant converters[cite: 32].</li>
-                    <li>Experimental testing and validation of WPT systems with various coil configurations and compensation circuits[cite: 33].</li>
+                    <li>End-to-end R&D of a high-efficiency resonant WPT system funded by NSERC and MITACS[cite: 31].</li>
+                    <li>Design, modeling, and simulation of DC-DC converters, inverters, rectifiers, and resonant converters[cite: 32].</li>
+                    <li>Experimental testing and validation of WPT systems with various coil configurations[cite: 33].</li>
                 </ul>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item glass-panel">
                 <h3>Electrical Engineering Intern</h3>
-                <h4>Oshawa Power | Oshawa, Ontario | Jun 2022 - Apr 2023 [cite: 34, 35]</h4>
+                <div class="tech-text">Oshawa Power | Oshawa, ON | Jun 2022 - Apr 2023 [cite: 34, 35]</div>
                 <ul>
-                    <li>Creating regression models to forecast energy production and revenue generation from several solar PV generation systems and wind turbine generation systems[cite: 36].</li>
-                    <li>Reviewing and approving major and non-major equipment based on the compliance of their test reports according to the corresponding industry standards[cite: 38].</li>
+                    <li>Created regression models to forecast energy production from solar PV and wind turbine systems[cite: 36].</li>
+                    <li>Reviewed and approved major/non-major equipment based on compliance with industry standards[cite: 38].</li>
                 </ul>
             </div>
-            
-            <div class="timeline-item">
-                <h3>Project Engineer</h3>
-                <h4>Sunshine Energy Pvt. Ltd. | Kathmandu, Nepal | Nov 2019 - Dec 2021 [cite: 39, 40, 41]</h4>
-                <ul>
-                    <li>Site survey along with overall system design, cost estimation, and tender bid document preparation of off-grid and on-grid solar PV system[cite: 42].</li>
-                </ul>
-            </div>
-            
-            <div class="timeline-item">
-                <h3>Electronics Technician</h3>
-                <h4>Defense Infrastructure Organization | Lalitpur, Nepal | Feb 2018 - Aug 2019 [cite: 43, 44, 45]</h4>
-                <ul>
-                    <li>Execute all the necessary testing & inspection of the electrical installation as per the British Standard (BS 7671:2008)[cite: 47].</li>
-                </ul>
-            </div>
-        </section>
+        </div>
 
-        <section id="education">
-            <h2>Education & Awards</h2>
-            <div class="timeline-item">
-                <h3>Master of Applied Science (Electrical and Computer Engineering)</h3>
-                <h4>Ontario Tech University | Oshawa, Ontario | Jan 2022 - Apr 2024 [cite: 8, 13]</h4>
-                <p>Research area: Wireless charging, power converter and control design [cite: 9]</p>
+        <h2 style="padding-left: 1rem;">> Academic Archives & Honors</h2>
+        <div class="bento-grid">
+            <div class="glass-panel">
+                <h3>Education</h3>
+                <ul>
+                    <li><strong>M.A.Sc. Electrical & Computer Engineering</strong><br>Ontario Tech University (Jan 2022 - Apr 2024) [cite: 8, 13]</li>
+                    <li><strong>B.E. Electrical Engineering</strong><br>Tribhuvan University, Pulchowk Campus (Nov 2013 - Sep 2017) [cite: 10, 14]</li>
+                </ul>
             </div>
-            <div class="timeline-item">
-                <h3>Bachelor's Degree (Electrical Engineering)</h3>
-                <h4>Tribhuvan University, Pulchowk Campus | Lalitpur, Nepal | Nov 2013 - Sep 2017 [cite: 10, 14]</h4>
-                <p>Field of interest: Power electronics, Control system [cite: 11]</p>
-            </div>
-            <div class="timeline-item">
-                <h3>Key Honours</h3>
+            <div class="glass-panel">
+                <h3>Awards</h3>
                 <ul>
                     <li>IEEE ITEC Student Travel Award Recipient (2023) [cite: 58]</li>
-                    <li>ITEC Coil Winding Competition Winner (1st Runner-up) (2023) [cite: 58]</li>
+                    <li>ITEC Coil Winding Competition Winner, 1st Runner-up (2023) [cite: 58]</li>
                     <li>IEEE SPEC Scholarship Award (2022) [cite: 58]</li>
                 </ul>
             </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Niranjan Shrestha. All Rights Reserved.</p>
-    </footer>
+        </div>
+        
+        <footer style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(0, 243, 255, 0.2);">
+            <p class="tech-text">END OF TRANSMISSION // &copy; 2026 Niranjan Shrestha</p>
+        </footer>
+    </div>
 
 </body>
 </html>
