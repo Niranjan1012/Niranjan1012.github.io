@@ -185,6 +185,66 @@
             .form-grid { grid-template-columns: 1fr; }
             .form-group.full-width { grid-column: span 1; }
         }
+            /* --- VISIBILITY CORRECTION BLOCK --- */
+
+/* 1. Fix the "Overview" and "Work Experience" section titles */
+.section-padding {
+    background-color: #ffffff !important; /* Forces background to be white */
+}
+
+.section-title {
+    color: #0f172a !important; /* Forces titles to be dark blue/black */
+}
+
+#about div, #about p {
+    color: #334155 !important; /* Makes overview text dark gray */
+}
+
+/* 2. Fix the Work Experience list */
+.exp-item {
+    border-top: 1px solid #e2e8f0 !important;
+}
+
+.exp-content h3 {
+    color: #0f172a !important;
+}
+
+.exp-content h4, .exp-content h4 a {
+    color: var(--accent-color) !important;
+}
+
+.exp-content ul li {
+    color: #475569 !important;
+}
+
+.exp-dates {
+    color: #64748b !important;
+}
+
+/* 3. Fix the Contact Modal (The image you shared) */
+.modal-content {
+    background-color: #ffffff !important;
+    color: #1e293b !important;
+}
+
+.modal-title {
+    color: #0f172a !important;
+}
+
+.form-group label {
+    color: #1e293b !important; /* Makes "Name", "Email", etc. visible */
+}
+
+.form-control {
+    background-color: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #1e293b !important; /* Makes text you type dark */
+}
+
+.file-upload-wrapper p {
+    color: #64748b !important;
+}
+        
     </style>
 </head>
 <body>
@@ -229,7 +289,7 @@
         </div>
     </section>
 
-    <section id="experience" class="section-padding" style="background-color: var(--bg-page);">
+    <section id="experience" class="section-padding">
         <div class="container">
             <h2 class="section-title">Work Experience</h2>
             
