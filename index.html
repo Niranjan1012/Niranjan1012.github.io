@@ -1,28 +1,362 @@
-<nav class="glass-nav">
-    <div class="logo">NS<span>.</span></div>
-    <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact" class="nav-cta">Let's Talk</a>
-    </div>
-</nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niranjan Shrestha | Power Electronics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-page: #f8f9fa;
+            --bg-surface: #ffffff;
+            --bg-dark: #0f172a;
+            --text-dark: #1e293b;
+            --text-light: #f8fafc;
+            --text-muted: #64748b;
+            --accent-color: #3b82f6; 
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
 
-<div class="hero-wrapper">
-    <div class="spotlight"></div> <div class="container">
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; transition: all 0.3s ease; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+
+        /* Navigation */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 2rem 5%; position: absolute; width: 100%; top: 0; z-index: 10; }
+        .logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; color: var(--text-dark); }
+        .nav-links { display: flex; gap: 2.5rem; font-size: 0.95rem; font-weight: 600; }
+        .nav-links a:hover { color: var(--accent-color); }
+
+        /* Hero Section */
+        .hero { padding: 14rem 0 8rem 0; display: flex; align-items: center; justify-content: space-between; gap: 4rem; }
+        .hero-text { flex: 1.2; }
+        .hero h1 { font-family: var(--font-display); font-size: 4.5rem; font-weight: 800; line-height: 1.05; margin-bottom: 1.5rem; letter-spacing: -1.5px; }
+        .hero h1 span { color: var(--accent-color); }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 520px; margin-bottom: 2.5rem; }
+        .hero-img-container { flex: 1; display: flex; justify-content: flex-end; }
+        .hero-img { width: 100%; max-width: 420px; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15); object-fit: cover; }
+
+        /* Sections */
+        .section-padding { padding: 8rem 0; background-color: var(--bg-surface); }
+        .section-title { font-family: var(--font-display); font-size: 3.5rem; font-weight: 700; margin-bottom: 4rem; letter-spacing: -1px; }
+
+        /* Experience List */
+        .exp-item { display: flex; border-top: 1px solid #e2e8f0; padding: 3.5rem 0; }
+        .exp-dates { width: 30%; font-size: 1rem; color: var(--text-muted); font-weight: 600; padding-top: 0.2rem; text-transform: uppercase; letter-spacing: 1px; }
+        .exp-content { width: 70%; }
+        .exp-content h3 { font-family: var(--font-display); font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.5px; }
+        .exp-content h4 { font-size: 1.1rem; font-weight: 500; color: var(--accent-color); margin-bottom: 1.5rem; }
+        .exp-content ul { padding-left: 1.5rem; color: var(--text-muted); }
+        .exp-content ul li { margin-bottom: 0.8rem; }
+
+        /* Footer */
+        .site-footer { background-color: var(--bg-dark); color: var(--text-light); padding: 8rem 0 3rem 0; position: relative; overflow: hidden; }
+        .footer-top-grid { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 6rem; padding-bottom: 4rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .footer-headline { font-family: var(--font-display); font-size: 5rem; font-weight: 800; line-height: 1; letter-spacing: -2px; max-width: 600px; }
+        
+        .contact-btn {
+            display: inline-flex; align-items: center; gap: 1rem; background-color: var(--accent-color); color: #ffffff;
+            padding: 1.2rem 2.5rem; border-radius: 50px; font-size: 1.1rem; font-weight: 600; border: none; cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease; font-family: var(--font-body);
+        }
+        .contact-btn:hover { transform: translateY(-5px); background-color: #2563eb; }
+
+        .footer-bottom-grid { display: flex; justify-content: space-between; }
+        .footer-col h4 { font-family: var(--font-display); color: rgba(255, 255, 255, 0.5); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col ul li a, .footer-col p { color: var(--text-light); font-size: 1.1rem; font-weight: 500; }
+        .footer-col ul li a:hover { color: var(--accent-color); }
+        .copyright-bar { margin-top: 6rem; text-align: center; font-size: 0.9rem; color: rgba(255, 255, 255, 0.4); }
+
+        /* === CONTACT FORM MODAL CSS === */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(5px);
+            z-index: 1000; display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        
+        .modal-content {
+            background: #ffffff; width: 90%; max-width: 700px; border-radius: 16px;
+            padding: 3rem; position: relative; max-height: 90vh; overflow-y: auto;
+            transform: translateY(20px); transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        
+        .close-btn {
+            position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none;
+            font-size: 1.5rem; cursor: pointer; color: var(--text-muted); transition: color 0.2s;
+        }
+        .close-btn:hover { color: var(--text-dark); }
+        
+        .modal-title { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--text-dark); margin-bottom: 2rem; text-align: center; }
+        
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group.full-width { grid-column: span 2; }
+        
+        .form-group label { font-size: 0.9rem; font-weight: 600; color: var(--text-dark); margin-bottom: 0.5rem; }
+        .form-group label span { color: #ef4444; } /* Red asterisk */
+        
+        .form-control {
+            padding: 0.8rem 1rem; border: 1px solid #e2e8f0; border-radius: 8px;
+            background-color: #f8fafc; font-family: var(--font-body); font-size: 1rem;
+            color: var(--text-dark); transition: border-color 0.2s;
+        }
+        .form-control:focus { outline: none; border-color: var(--accent-color); background-color: #ffffff; }
+        textarea.form-control { resize: vertical; min-height: 120px; }
+        
+        .file-upload-wrapper {
+            border: 2px dashed #cbd5e1; border-radius: 8px; padding: 2rem; text-align: center;
+            background-color: #f8fafc; cursor: pointer; transition: border-color 0.2s;
+        }
+        .file-upload-wrapper:hover { border-color: var(--accent-color); }
+        .file-upload-wrapper input[type="file"] { margin-top: 1rem; }
+        
+        .submit-btn {
+            background-color: var(--bg-dark); color: #ffffff; padding: 1rem 2.5rem;
+            border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; transition: background-color 0.2s; width: auto; display: inline-block;
+            margin-top: 1rem; font-family: var(--font-body);
+        }
+        .submit-btn:hover { background-color: var(--accent-color); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero { flex-direction: column; padding-top: 10rem; text-align: center; }
+            .hero h1 { font-size: 3rem; }
+            .hero p { margin: 0 auto 2rem auto; }
+            .exp-item { flex-direction: column; }
+            .exp-dates, .exp-content { width: 100%; }
+            .exp-dates { margin-bottom: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+            .footer-top-grid { flex-direction: column; align-items: flex-start; gap: 3rem; }
+            .footer-headline { font-size: 3.5rem; }
+            .footer-bottom-grid { flex-direction: column; gap: 3rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Niranjan Shrestha </div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
         <section class="hero">
             <div class="hero-text">
-                <div class="badge">Based in Canada</div>
-                <h1>Electrical <br><span>Engineer</span></h1>
-                <p>Results-driven Electrical Engineer and <strong>Power Electronics</strong> enthusiast. I specialize in high-frequency converter design, system modeling, and validating hardware that powers the future of EVs.</p>
-                <div class="hero-btns">
-                    <a href="#experience" class="btn-primary">View Experience</a>
-                    <a href="https://github.com/Niranjan1012" class="btn-secondary">GitHub Profile</a>
-                </div>
+                <h1>Electrical <br>Engineer</span></h1>
+                <p>Results-driven and self-motivated Electrical Engineer and Power Electronics Enthusiast with 4+ years of experience in high-frequency/low-frequency power converter design, converter circuit modeling, simulation, control system design, and hardware testing/validation.</p>
             </div>
             <div class="hero-img-container">
-                <div class="img-outline"></div>
                 <img src="nian.jpeg" alt="Niranjan Shrestha" class="hero-img">
             </div>
         </section>
     </div>
-</div>
+
+    <section id="about" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Overview</h2>
+            <div style="font-size: 1.25rem; color: var(--text-muted); max-width: 850px;">
+                <p style="margin-bottom: 1.5rem;">I completed my Master of Applied Science in Electrical and Computer Engineering at Ontario Tech University, with my thesis focused on wireless charging, power converter design & development, hybrid compensation network and control system design.</p>
+                <p>I am seeking a suitable role to leverage my knowledge and skills in power electronics design and development projects, circuit modeling and simulation, hardware testing and validation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section-padding" style="background-color: var(--bg-page);">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            
+            <div class="exp-item">
+                <div class="exp-dates">May 2024 — Present</div>
+                <div class="exp-content">
+                    <h3>Electrical Engineer</h3>
+                    <h4> <a href="https://wirelesspnc.com/">Wireless PnC Inc. · Victoria, BC</a></h4>
+                    <ul>
+                        <li>Design, modeling, simulation, control, and development of power converters for wireless power transfer systems for E-scooters, E-bikes, and EVs.</li>
+                        <li>Conducting research on novel converters and controls for wireless charging systems.</li>
+                        <li>PCB design and fabrication of different converters (Boost PFC rectifier, Inverter, etc).</li>
+                        <li>Generating budgets and time estimates for the development of new prototypes.</li>
+                        <li>Mentoring and supervising electrical interns for simulation, hardware design, end-to-end development, and test validation for a 7.7 kW WPT system.</li>
+                        <li>Collecting information on operational performance, performing root-cause analysis of identified faults, and troubleshooting them.</li>
+                        <li>Maintaining appropriate design documentation and reports using company-designated design guidelines, and automotive industry standards</li>
+                        <li>Writing validation test plans for all phases of the projects and supporting vehicle-level bench testing activities and reporting findings.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-dates">Jan 2022 — Apr 2024</div>
+                <div class="exp-content">
+                    <h3>Graduate Research Assistant</h3>
+                    <h4> <a href="https://engineering.ontariotechu.ca/steer/index.php">STEER Group at Ontario Tech University · Oshawa, ON</a></h4>
+                    
+                    <ul>
+                        <li>Completion of end-to-end R&D of a high-efficiency resonant WPT system (incorporating novel compensation network and phase shift control for CC/CV charging) funded by NSERC and MITACS in collaboration with an industry partner</li>
+                        <li>Design, modeling, simulation, control, and development of power converters, including DC-DC converters, inverters, rectifiers, and resonant converters, particularly applicable to wireless power transfer systems for EVs.</li>
+                        <li>Experimental testing and validation of WPT systems with various coil configurations and compensation circuits.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-dates">Jun 2022 — Apr 2023</div>
+                <div class="exp-content">
+                    <h3>Electrical Engineering Intern</h3>
+                    <h4> <a href="https://www.oshawapower.ca/">Oshawa Power · Oshawa, ON</a></h4>
+                    <ul>
+                        <li>Creating regression models to forecast energy production and revenue generation from several solar PV generation systems and wind turbine generation systems</li>
+                        <li>Assist in preparing micro-embedded generation connection applications for the net metering system.</li>
+                        <li>Reviewing and approving major and non-major equipment based on the compliance of their test reports according to the corresponding industry standards.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contact" class="site-footer">
+        <div class="container">
+            
+            <div class="footer-top-grid">
+                <h2 class="footer-headline">Ready to build something?</h2>
+                <button class="contact-btn" onclick="openModal()">
+                    Say Hello
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="footer-bottom-grid">
+                <div class="footer-col">
+                    <h4>Location</h4>
+                    <p>Oshawa, ON, Canada</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/in/niranjan-shrestha-a89482137/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="https://scholar.google.ca/citations?hl=en&user=j9gA7tEAAAAJ">Google Scholar</a></li>
+                        <li><a href="https://github.com/Niranjan1012">GitHub</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="https://drive.google.com/file/d/1_Rn2JMKLd2v0892ZhSv1LpBrLIdXWzsP/view?usp=sharing">Download Resume</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright-bar">
+                &copy; 2026 Niranjan Shrestha. All Rights Reserved.
+            </div>
+
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <h2 class="modal-title">Contact Us</h2>
+            
+            <form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+                
+                <input type="hidden" name="access_key" value="5ff7a134-ea4b-4229-8128-0f9af496729e">
+                <input type="hidden" name="redirect" value="https://Niranjan1012.github.io/">
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Inquiry Type <span>*</span></label>
+                        <select name="Inquiry Type" class="form-control" required>
+                            <option value="" disabled selected>Please select</option>
+                            <option value="Job Opportunity">Job Opportunity</option>
+                            <option value="Consulting">Consulting</option>
+                            <option value="Networking">Networking</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Name <span>*</span></label>
+                        <input type="text" name="Name" class="form-control" placeholder="Name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email <span>*</span></label>
+                        <input type="email" name="Email" class="form-control" placeholder="Email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Phone (Optional)</label>
+                        <input type="tel" name="Phone" class="form-control" placeholder="Phone Number">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>Message <span>*</span></label>
+                        <textarea name="Message" class="form-control" placeholder="Message" required></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>Attachments</label>
+                        <div class="file-upload-wrapper">
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Choose file or drag here</p>
+                            <p style="color: #94a3b8; font-size: 0.8rem;">Supported format: JPG, JPEG, PNG, PDF.</p>
+                            <input type="file" name="attachment" accept=".jpg, .jpeg, .png, .pdf">
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('contactModal');
+
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevents scrolling behind the modal
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal if clicked outside the white box
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
