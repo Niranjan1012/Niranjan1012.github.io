@@ -244,6 +244,102 @@
 .file-upload-wrapper p {
     color: #64748b !important;
 }
+        /* --- MODERN EXPERIENCE GRID --- */
+.exp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.exp-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 2.5rem;
+    border-radius: 24px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.exp-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-color);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+.exp-date {
+    display: inline-block;
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.exp-header h3 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: #0f172a;
+}
+
+.company-link {
+    font-weight: 600;
+    color: #64748b;
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.exp-bullets {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.exp-bullets li {
+    color: #475569;
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.exp-bullets li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* Tech Tags */
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.tech-tags span {
+    background: #f1f5f9;
+    color: #475569;
+    padding: 0.4rem 0.9rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.exp-card:hover .tech-tags span {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+    .exp-grid { grid-template-columns: 1fr; }
+}
         
     </style>
 </head>
@@ -289,57 +385,76 @@
         </div>
     </section>
 
-    <section id="experience" class="section-padding">
-        <div class="container">
-            <h2 class="section-title">Work Experience</h2>
-            
-            <div class="exp-item">
-                <div class="exp-dates">May 2024 — Present</div>
-                <div class="exp-content">
+<section id="experience" class="section-padding">
+    <div class="container">
+        <h2 class="section-title">Work Experience</h2>
+        
+        <div class="exp-grid">
+            <div class="exp-card">
+                <div class="exp-header">
+                    <span class="exp-date">May 2024 — Present</span>
                     <h3>Electrical Engineer</h3>
-                    <h4> <a href="https://wirelesspnc.com/">Wireless PnC Inc. · Victoria, BC</a></h4>
-                    <ul>
-                        <li>Design, modeling, simulation, control, and development of power converters for wireless power transfer systems for E-scooters, E-bikes, and EVs.</li>
-                        <li>Conducting research on novel converters and controls for wireless charging systems.</li>
-                        <li>PCB design and fabrication of different converters (Boost PFC rectifier, Inverter, etc).</li>
-                        <li>Generating budgets and time estimates for the development of new prototypes.</li>
-                        <li>Mentoring and supervising electrical interns for simulation, hardware design, end-to-end development, and test validation for a 7.7 kW WPT system.</li>
-                        <li>Collecting information on operational performance, performing root-cause analysis of identified faults, and troubleshooting them.</li>
-                        <li>Maintaining appropriate design documentation and reports using company-designated design guidelines, and automotive industry standards</li>
-                        <li>Writing validation test plans for all phases of the projects and supporting vehicle-level bench testing activities and reporting findings.</li>
-                    </ul>
+                    <a href="https://wirelesspnc.com/" target="_blank" class="company-link">Wireless PnC Inc. · Victoria, BC</a>
+                </div>
+                <ul class="exp-bullets">
+                    <li>Design, modeling, simulation, control, and development of power converters for wireless power transfer systems for E-scooters, E-bikes, and EVs.</li>
+                    <li>Conducting research on novel converters and controls for wireless charging systems.</li>
+                    <li>PCB design and fabrication of different converters (Boost PFC rectifier, Inverter, etc).</li>
+                    <li>Generating budgets and time estimates for the development of new prototypes.</li>
+                    <li>Mentoring and supervising electrical interns for simulation, hardware design, end-to-end development, and test validation for a 7.7 kW WPT system.</li>
+                    <li>Collecting information on operational performance, performing root-cause analysis of identified faults, and troubleshooting them.</li>
+                    <li>Maintaining appropriate design documentation and reports using company-designated design guidelines, and automotive industry standards</li>
+                    <li>Writing validation test plans for all phases of the projects and supporting vehicle-level bench testing activities and reporting findings.</li>
+
+                </ul>
+                <div class="tech-tags">
+                    <span>Power Electronics</span>
+                    <span>PCB Design</span>
+                    <span>EV Charging</span>
+                    <span>Python</span>
                 </div>
             </div>
 
-            <div class="exp-item">
-                <div class="exp-dates">Jan 2022 — Apr 2024</div>
-                <div class="exp-content">
+            <div class="exp-card">
+                <div class="exp-header">
+                    <span class="exp-date">Jan 2022 — Apr 2024</span>
                     <h3>Graduate Research Assistant</h3>
-                    <h4> <a href="https://engineering.ontariotechu.ca/steer/index.php">STEER Group at Ontario Tech University · Oshawa, ON</a></h4>
+                    <a href="https://engineering.ontariotechu.ca/steer/index.php" target="_blank" class="company-link">STEER Group · Ontario Tech</a>
+                </div>
+                <ul class="exp-bullets">
+                   <li>Completion of end-to-end R&D of a high-efficiency resonant WPT system (incorporating novel compensation network and phase shift control for CC/CV charging) funded by NSERC and MITACS in collaboration with an industry partner</li>
+                   <li>Design, modeling, simulation, control, and development of power converters, including DC-DC converters, inverters, rectifiers, and resonant converters, particularly applicable to wireless power transfer systems for EVs.</li>
+                   <li>Experimental testing and validation of WPT systems with various coil configurations and compensation circuits.</li>
+
                     
-                    <ul>
-                        <li>Completion of end-to-end R&D of a high-efficiency resonant WPT system (incorporating novel compensation network and phase shift control for CC/CV charging) funded by NSERC and MITACS in collaboration with an industry partner</li>
-                        <li>Design, modeling, simulation, control, and development of power converters, including DC-DC converters, inverters, rectifiers, and resonant converters, particularly applicable to wireless power transfer systems for EVs.</li>
-                        <li>Experimental testing and validation of WPT systems with various coil configurations and compensation circuits.</li>
-                    </ul>
+                </ul>
+                <div class="tech-tags">
+                    <span>Research</span>
+                    <span>MATLAB</span>
+                    <span>Simulink</span>
+                    <span>WPT</span>
                 </div>
             </div>
 
-            <div class="exp-item">
-                <div class="exp-dates">Jun 2022 — Apr 2023</div>
-                <div class="exp-content">
+            <div class="exp-card">
+                <div class="exp-header">
+                    <span class="exp-date">Jun 2022 — Apr 2023</span>
                     <h3>Electrical Engineering Intern</h3>
-                    <h4> <a href="https://www.oshawapower.ca/">Oshawa Power · Oshawa, ON</a></h4>
-                    <ul>
-                        <li>Creating regression models to forecast energy production and revenue generation from several solar PV generation systems and wind turbine generation systems</li>
-                        <li>Assist in preparing micro-embedded generation connection applications for the net metering system.</li>
-                        <li>Reviewing and approving major and non-major equipment based on the compliance of their test reports according to the corresponding industry standards.</li>
-                    </ul>
+                    <a href="https://www.oshawapower.ca/" target="_blank" class="company-link">Oshawa Power · Oshawa, ON</a>
+                </div>
+                <ul class="exp-bullets">
+                    <li>Created regression models to forecast solar and wind energy production.</li>
+                    <li>Reviewed equipment compliance for industry standards.</li>
+                </ul>
+                <div class="tech-tags">
+                    <span>Data Modeling</span>
+                    <span>Solar PV</span>
+                    <span>Wind Power</span>
                 </div>
             </div>
-
         </div>
-    </section>
+    </div>
+</section>
 
     <footer id="contact" class="site-footer">
         <div class="container">
