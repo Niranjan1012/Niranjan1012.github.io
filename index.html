@@ -362,6 +362,107 @@
 @media (max-width: 768px) {
     .exp-grid { grid-template-columns: 1fr; }
 }
+
+/* --- WORLD-CLASS FOOTER --- */
+.site-footer {
+    background-color: #0b0f1a; /* Matches Hero deep navy */
+    padding: 10rem 0 4rem 0;
+    color: #f8fafc;
+}
+
+.footer-cta-box {
+    text-align: center;
+    margin-bottom: 8rem;
+    animation: fadeInUp 1s ease;
+}
+
+.footer-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 3rem;
+}
+
+.footer-headline span {
+    color: var(--accent-color);
+}
+
+.contact-btn-premium {
+    background: var(--accent-color);
+    color: white;
+    padding: 1.2rem 3rem;
+    border-radius: 100px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.contact-btn-premium:hover {
+    transform: scale(1.05);
+    background: #2563eb;
+    box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+}
+
+.footer-bottom-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 4rem;
+}
+
+.footer-col h4 {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+}
+
+.footer-col ul { list-style: none; padding: 0; }
+.footer-col ul li { margin-bottom: 0.8rem; }
+.footer-col a { 
+    color: #f8fafc; 
+    font-weight: 500; 
+    position: relative; 
+}
+
+.footer-col a:hover { color: var(--accent-color); }
+
+/* Animated underline effect for social links */
+.social-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.social-links a:hover::after {
+    width: 100%;
+}
+
+.copyright-bar {
+    margin-top: 6rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+    .footer-bottom-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-cta-box { margin-bottom: 4rem; }
+}
         
     </style>
 </head>
@@ -483,50 +584,49 @@
 </section>
 
     <footer id="contact" class="site-footer">
-        <div class="container">
-            
-            <div class="footer-top-grid">
-                <h2 class="footer-headline">Ready to build something?</h2>
-                <button class="contact-btn" onclick="openModal()">
-                    Say Hello
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                </button>
-            </div>
-
-            <div class="footer-bottom-grid">
-                <div class="footer-col">
-                    <h4>Location</h4>
-                    <p>Oshawa, ON, Canada</p>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Connect</h4>
-                    <ul>
-                        <li><a href="https://www.linkedin.com/in/niranjan-shrestha-a89482137/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                        <li><a href="https://scholar.google.ca/citations?hl=en&user=j9gA7tEAAAAJ">Google Scholar</a></li>
-                        <li><a href="https://github.com/Niranjan1012">GitHub</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="https://drive.google.com/file/d/1_Rn2JMKLd2v0892ZhSv1LpBrLIdXWzsP/view?usp=sharing">Download Resume</a></li>
-                        <li><a href="#experience">Experience</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="copyright-bar">
-                &copy; 2026 Niranjan Shrestha. All Rights Reserved.
-            </div>
-
+    <div class="container">
+        <div class="footer-cta-box">
+            <h2 class="footer-headline">Let's build the <br><span>next generation</span> of power.</h2>
+            <button class="contact-btn-premium" onclick="openModal()">
+                Get In Touch
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </button>
         </div>
-    </footer>
 
+        <div class="footer-bottom-grid">
+            <div class="footer-col">
+                <h4>Based In</h4>
+                <p>Oshawa, ON, Canada</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Socials</h4>
+                <ul class="social-links">
+                    <li><a href="https://www.linkedin.com/in/niranjan-shrestha-a89482137/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://scholar.google.ca/citations?hl=en&user=j9gA7tEAAAAJ" target="_blank">Google Scholar</a></li>
+                    <li><a href="https://github.com/Niranjan1012" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="https://drive.google.com/file/d/1_Rn2JMKLd2v0892ZhSv1LpBrLIdXWzsP/view?usp=sharing" target="_blank">Download Resume</a></li>
+                    <li><a href="#about">About Me</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright-bar">
+            <span>&copy; 2026 Niranjan Shrestha</span>
+            <span class="made-with">Designed for Performance</span>
+        </div>
+    </div>
+</footer>
+    
     <div class="modal-overlay" id="contactModal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">&times;</button>
