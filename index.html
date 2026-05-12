@@ -121,7 +121,14 @@
         .footer-col ul li { margin-bottom: 0.8rem; }
         .footer-col ul li a, .footer-col p { color: var(--text-light); font-size: 1.1rem; font-weight: 500; }
         .footer-col ul li a:hover { color: var(--accent-color); }
-        .copyright-bar { margin-top: 6rem; text-align: center; font-size: 0.9rem; color: rgba(255, 255, 255, 0.4); }
+        .copyright-bar {
+    margin-top: 6rem;
+    display: flex;
+    justify-content: center; /* This centers your name/year */
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+}
 
         /* === CONTACT FORM MODAL CSS === */
         .modal-overlay {
