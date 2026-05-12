@@ -569,7 +569,20 @@
                 grid-column: span 1;
             }
         }
-
+@media (max-width: 768px) {
+    .hero-btns {
+        display: flex;
+        flex-direction: column; /* Stacks all 3 buttons on mobile */
+        gap: 0.8rem;
+        width: 100%;
+    }
+    
+    .hero-btns .btn-primary, 
+    .hero-btns .btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+}
     </style>
 </head>
 <body>
@@ -603,6 +616,7 @@
                     <div class="hero-btns">
                         <a href="#experience" class="btn-primary">My Work</a>
                         <a href="https://www.linkedin.com/in/niranjan-shrestha-a89482137/" target="_blank" class="btn-secondary btn-linkedin">LinkedIn</a>
+                        <a href="#projects" class="btn-secondary">My Projects</a>
                     </div>
                 </div>
                 <div class="hero-img-container">
