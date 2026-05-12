@@ -476,17 +476,119 @@
     .footer-bottom-grid { grid-template-columns: 1fr; gap: 2rem; }
     .footer-cta-box { margin-bottom: 4rem; }
 }
-        
+        /* --- MOBILE SMOOTHNESS & RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            /* 1. Prevent horizontal shaking/scrolling */
+            body, html {
+                overflow-x: hidden;
+                position: relative;
+            }
+
+            /* 2. Shrink Hero Section for small screens */
+            .hero-wrapper {
+                padding-top: 80px; /* Space for the fixed nav */
+                min-height: auto;
+                padding-bottom: 4rem;
+            }
+
+            .hero {
+                flex-direction: column; /* Stacks text and image */
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem; /* Scale down the massive font */
+                line-height: 1.1;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+                margin: 0 auto 2rem auto;
+            }
+
+            .hero-btns {
+                flex-direction: column; /* Stack buttons vertically */
+                width: 100%;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%; /* Full width buttons for easier tapping */
+                display: block;
+            }
+
+            /* 3. Scale down the Hero Image */
+            .hero-img-container {
+                justify-content: center;
+                margin-top: 2rem;
+            }
+
+            .hero-img {
+                max-width: 250px; /* Keeps image tidy on mobile */
+            }
+
+            .img-outline {
+                display: none; /* Removes the offset border to prevent horizontal scroll */
+            }
+
+            /* 4. Fix Navigation Width */
+            .glass-nav {
+                width: 94%;
+                left: 3%;
+                padding: 1rem;
+                top: 10px;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            /* 5. Clean up Experience Cards */
+            .exp-card {
+                min-width: 100%; /* Force cards to take full width */
+                padding: 1.5rem;
+            }
+
+            .exp-header h3 {
+                font-size: 1.4rem;
+            }
+
+            /* 6. Fix Contact Modal for Touch */
+            .modal-content {
+                padding: 1.5rem;
+                width: 95%;
+                margin: 10px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr; /* Force single column form */
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+        }
+
     </style>
 </head>
 <body>
 
-    <nav class="glass-nav">
+<nav class="glass-nav">
         <div class="logo">MY PORTFOLIO<span></span></div>
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#experience">Experience</a>
-            <a href="#contact" class="nav-cta" onclick="openModal()">Let's Talk</a>
+        
+        <div class="menu-toggle" onclick="toggleMobileMenu()" style="cursor:pointer; display:none;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </div>
+
+        <div class="nav-links" id="navLinks">
+            <a href="#about" onclick="toggleMobileMenu()">About</a>
+            <a href="#experience" onclick="toggleMobileMenu()">Experience</a>
+            <a href="#contact" class="nav-cta" onclick="openModal(); toggleMobileMenu()">Let's Talk</a>
         </div>
     </nav>
 
@@ -713,6 +815,15 @@
         window.onclick = function(event) {
             if (event.target === modal) {
                 closeModal();
+            }
+        }
+
+        // Add this to your existing script section
+        function toggleMobileMenu() {
+            // Only toggle if we are on a small screen
+            if (window.innerWidth <= 768) {
+                const nav = document.getElementById('navLinks');
+                nav.classList.toggle('mobile-active');
             }
         }
     </script>
