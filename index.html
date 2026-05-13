@@ -583,6 +583,69 @@
         text-align: center;
     }
 }
+
+        /* --- UPDATED TECHNICAL PROJECTS CAROUSEL (V2) --- */
+
+/* 1. Condensing Vertical Space */
+#projects.section-padding {
+    padding: 3rem 0 !important; /* Forces tighter spacing top/bottom */
+}
+
+/* 2. Style the Navigation Arrows */
+.nav-arrow {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.nav-arrow:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* 3. The New Card Interaction (Hover & Click) */
+.project-card-v2:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color) !important;
+}
+
+/* 4. Style the "View" Button */
+.proj-action-btn:hover {
+    background: #f1f5f9 !important; /* Slight gray on hover */
+    border-color: #94a3b8 !important;
+}
+
+/* 5. Clean up the Tech Tags for Dark Mode */
+.project-card-v2 .tech-tags span {
+    background: rgba(255, 255, 255, 0.05);
+    color: #cbd5e1;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 100px;
+}
+
+/* Responsiveness: Condense further on mobile */
+@media (max-width: 768px) {
+    #projects.section-padding {
+        padding: 2rem 0 !important;
+    }
+    .carousel-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 1rem;
+    }
+    .carousel-track {
+        width: 100%; /* Show 1 card at a time on mobile */
+    }
+    .project-slide-card {
+        flex: 0 0 100%;
+    }
+}
     </style>
 </head>
 <body>
@@ -637,45 +700,61 @@
         </div>
     </section>
     
-<section id="projects" class="section-padding" style="background-color: #0f172a; color: white;">
-        <div class="container">
-            <h2 class="section-title" style="color: white; margin-bottom: 3rem;">Technical Projects</h2>
-            
-            <div class="exp-grid">
+<section id="projects" class="section-padding" style="background-color: var(--bg-page); color: white; padding: 4rem 0;">
+    <div class="container">
+        
+        <div class="carousel-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <h2 class="section-title" style="color: white; font-size: 2.2rem; margin: 0; line-height: 1;">Technical Projects</h2>
+            <div class="carousel-nav-arrows" style="display: flex; gap: 0.8rem;">
+                <button class="nav-arrow prev" onclick="moveCarousel(-1)">&#10094;</button>
+                <button class="nav-arrow next" onclick="moveCarousel(1)">&#10095;</button>
+            </div>
+        </div>
+
+        <div class="carousel-viewmask" style="overflow: hidden; width: 100%; padding-bottom: 1rem;">
+            <div class="carousel-track" id="projectTrack" style="display: flex; transition: transform 0.5s ease-out; width: 300%;">
                 
-                <div class="exp-card" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column;">
-                    <div class="exp-header">
-                        <span class="exp-date" style="color: #60a5fa;">Hardware & PCB</span>
-                        <h3 style="color: white;">Advanced Power Converter Design</h3>
-                    </div>
-                    <p style="color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.95rem;">
-                        Design, modeling, and fabrication of high-frequency power converters (Boost PFC, Inverters). Focused on PCB layout optimization for GaN-based systems and thermal management.
-                    </p>
-                    <div class="tech-tags">
-                        <span style="background: rgba(96, 165, 250, 0.1); color: #60a5fa;">Altium Designer</span>
-                        <span style="background: rgba(96, 165, 250, 0.1); color: #60a5fa;">GaN Power</span>
-                        <span style="background: rgba(96, 165, 250, 0.1); color: #60a5fa;">Hardware Testing</span>
+                <div class="project-slide-card" style="flex: 0 0 33.333%; padding: 0 0.8rem; box-sizing: border-box;">
+                    <div class="exp-card project-card-v2" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; min-height: 280px; transition: transform 0.3s, border-color 0.3s;">
+                        <span class="proj-badge" style="display: inline-block; padding: 0.3rem 0.7rem; background: rgba(59, 130, 246, 0.1); color: var(--accent-color); border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; align-self: flex-start;">Hardware & PCB</span>
+                        <h3 style="color: white; font-size: 1.4rem; font-weight: 600; margin-bottom: 1rem;">Advanced Power Converter Design</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; flex-grow: 1;">Design, modeling, and fabrication of high-frequency power converters (Boost PFC, Inverters). Focused on PCB layout optimization for GaN-based systems and thermal management.</p>
+                        <div class="tech-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
+                            <span>Altium Designer</span><span>GaN Power</span><span>Hardware Testing</span>
+                        </div>
+                        <button class="proj-action-btn" style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 0.7rem; background: #ffffff; color: #1e293b; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: background 0.2s;">View Design</button>
                     </div>
                 </div>
 
-                <div class="exp-card" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column;">
-                    <div class="exp-header">
-                        <span class="exp-date" style="color: #60a5fa;">Simulation & Control</span>
-                        <h3 style="color: white;">WPT System Modeling</h3>
+                <div class="project-slide-card" style="flex: 0 0 33.333%; padding: 0 0.8rem; box-sizing: border-box;">
+                    <div class="exp-card project-card-v2" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; min-height: 280px; transition: transform 0.3s, border-color 0.3s;">
+                        <span class="proj-badge" style="display: inline-block; padding: 0.3rem 0.7rem; background: rgba(59, 130, 246, 0.1); color: var(--accent-color); border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; align-self: flex-start;">Simulation & Control</span>
+                        <h3 style="color: white; font-size: 1.4rem; font-weight: 600; margin-bottom: 1rem;">WPT System Modeling</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; flex-grow: 1;">Developed closed-loop control algorithms and hybrid compensation networks for Wireless Power Transfer. Conducted extensive root-cause analysis and fault-finding.</p>
+                        <div class="tech-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
+                            <span>MATLAB/Simulink</span><span>PLECS</span><span>Control Systems</span>
+                        </div>
+                        <button class="proj-action-btn" style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 0.7rem; background: #ffffff; color: #1e293b; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: background 0.2s;">View Simulation</button>
                     </div>
-                    <p style="color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.95rem;">
-                        Developed closed-loop control algorithms and hybrid compensation networks for Wireless Power Transfer. Conducted extensive root-cause analysis and fault-finding.
-                    </p>
-                    <div class="tech-tags">
-                        <span style="background: rgba(96, 165, 250, 0.1); color: #60a5fa;">MATLAB/Simulink</span>
-                        <span style="background: rgba(96, 165, 250, 0.1); color: #60a5fa;">PLECS</span>
-                        <span style="background: rgba(96, 165, 250, 0.1); color: #60a5fa;">Control Systems</span>
+                </div>
+
+                <div class="project-slide-card" style="flex: 0 0 33.333%; padding: 0 0.8rem; box-sizing: border-box;">
+                    <div class="exp-card project-card-v2" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; min-height: 280px; transition: transform 0.3s, border-color 0.3s;">
+                        <span class="proj-badge" style="display: inline-block; padding: 0.3rem 0.7rem; background: rgba(59, 130, 246, 0.1); color: var(--accent-color); border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; align-self: flex-start;">Control Theory</span>
+                        <h3 style="color: white; font-size: 1.4rem; font-weight: 600; margin-bottom: 1rem;">Closed-Loop Stability Analysis</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; flex-grow: 1;">Modeling and dynamic analysis of complex converters using PLECS and MATLAB for stability verification.</p>
+                        <div class="tech-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
+                            <span>Stability</span><span>Bode Plot</span><span>PLECS</span>
+                        </div>
+                        <button class="proj-action-btn" style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 0.7rem; background: #ffffff; color: #1e293b; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: background 0.2s;">View Report</button>
                     </div>
                 </div>
 
             </div>
         </div>
-    </section>
+
+    </div>
+</section>
 
 <a href="#projects" class="btn-secondary">My Projects</a>
     
@@ -882,6 +961,29 @@
                 nav.classList.toggle('mobile-active');
             }
         }
+// Add this logic to your existing script section
+        
+        let currentSlide = 0;
+        
+        function moveCarousel(direction) {
+            const track = document.getElementById('projectTrack');
+            const slides = document.querySelectorAll('.project-slide-card');
+            
+            // Adjust how many cards slide based on screen size (1 for mobile, 2 for desktop)
+            const cardsToShow = (window.innerWidth <= 768) ? 1 : 2;
+            const totalSlides = slides.length - cardsToShow;
+
+            currentSlide += direction;
+
+            // Simple loop logic (prevent going out of bounds)
+            if (currentSlide < 0) { currentSlide = 0; }
+            if (currentSlide > totalSlides) { currentSlide = totalSlides; }
+
+            // Apply the sliding motion
+            const offset = -(currentSlide * (100 / slides.length));
+            track.style.transform = `translateX(${offset}%)`;
+        }
+        
     </script>
 
 </body>
