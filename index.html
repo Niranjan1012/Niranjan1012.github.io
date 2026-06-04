@@ -1,1813 +1,856 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Niranjan Shrestha | Power Electronics Engineer</title>
-  <meta name="description" content="Power Electronics Engineer specialising in wireless power transfer, SiC converter design, PCB layout, and hardware validation." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niranjan Shrestha | Power Electronics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-page: #0b0f1a; /* New Deep Navy Background */
+            --bg-surface: #ffffff;
+            --bg-dark: #0f172a;
+            --text-dark: #f8fafc; /* Lighter text for dark mode */
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-color: #3b82f6; 
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
 
-  <!-- Fonts: Clash Display (display) + Cabinet Grotesk (body) via Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; transition: all 0.3s ease; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
 
-  <style>
-    /* =====================================================
-       DESIGN SYSTEM
-       Aesthetic: Industrial-Technical Dark — like a PCB
-       under electron-microscope light. Deep charcoal
-       background, copper-trace amber accent, monospaced
-       secondary font for callouts and stats.
-    ===================================================== */
-    :root {
-      --bg:          #0c0d0f;
-      --bg-1:        #111318;
-      --bg-2:        #181b22;
-      --bg-card:     #13151a;
-      --border:      rgba(255,255,255,0.07);
-      --border-lit:  rgba(200,140,50,0.4);
+        /* Navigation - New Glassmorphism Look */
+        .glass-nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.2rem 5%; position: fixed; width: 90%; top: 20px; left: 5%;
+            z-index: 1000; border-radius: 20px;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .logo span { color: var(--accent-color); }
+        .nav-links { display: flex; gap: 2.5rem; font-size: 0.95rem; font-weight: 600; align-items: center; }
+        .nav-links a:hover { color: var(--accent-color); }
+        .nav-cta { background: var(--accent-color); padding: 0.6rem 1.2rem; border-radius: 12px; color: white !important; }
 
-      --copper:      #c87e28;       /* primary accent — copper trace */
-      --copper-dim:  rgba(200,126,40,0.12);
-      --copper-glow: rgba(200,126,40,0.25);
-      --amber-soft:  #e8a84a;
-      --teal:        #2dd4bf;       /* secondary accent */
-      --teal-dim:    rgba(45,212,191,0.1);
+        /* Hero Wrapper & Spotlight */
+        .hero-wrapper { position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; }
+        .spotlight {
+            position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(11, 15, 26, 0) 70%);
+            top: -10%; right: -10%; z-index: -1;
+        }
 
-      --text-1:  #f0f0f0;
-      --text-2:  #a0a8b8;
-      --text-3:  #5a6275;
+        /* Hero Section */
+        .hero { padding: 0; display: flex; align-items: center; justify-content: space-between; gap: 4rem; width: 100%; }
+        .badge {
+            display: inline-block; padding: 0.5rem 1rem; background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-color); border-radius: 100px; font-size: 0.8rem;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem;
+        }
+        .hero-text { flex: 1.2; animation: fadeInUp 1s ease forwards; }
+        .hero h1 { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 4.5rem); font-weight: 800; line-height: 1.05; margin-bottom: 1.5rem; letter-spacing: -1.5px; }
+        .hero h1 span { color: var(--accent-color); }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 520px; margin-bottom: 2.5rem; }
+        
+        .hero-btns { display: flex; gap: 1.5rem; }
+        .btn-primary { background: var(--accent-color); padding: 1rem 2rem; border-radius: 12px; font-weight: 600; transition: 0.3s; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
+        .btn-secondary { border: 1px solid rgba(255, 255, 255, 0.2); padding: 1rem 2rem; border-radius: 12px; font-weight: 600; transition: 0.3s; }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.05); }
+        /* Custom hover state for the LinkedIn button */
+        .btn-linkedin:hover {
+        border-color: #0077b5 !important; /* LinkedIn Blue */
+        background: rgba(0, 119, 181, 0.1) !important;
+        color: #0077b5 !important;
+}
 
-      --font-display: 'Outfit', sans-serif;
-      --font-mono:    'Space Mono', monospace;
+        .hero-img-container { flex: 1; display: flex; justify-content: flex-end; position: relative; animation: fadeInUp 1.2s ease forwards; }
+        .hero-img { width: 100%; max-width: 400px; border-radius: 30px; z-index: 2; position: relative; }
+        .img-outline {
+            position: absolute; width: 100%; height: 100%;
+            border: 2px solid var(--accent-color); border-radius: 30px;
+            top: 20px; right: -20px; z-index: 1; opacity: 0.3;
+        }
 
-      --nav-h: 70px;
-      --r:     14px;        /* card border-radius */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Sections */
+        .section-padding { padding: 8rem 0; background-color: var(--bg-surface); }
+        .section-title { font-family: var(--font-display); font-size: 3.5rem; font-weight: 700; margin-bottom: 4rem; letter-spacing: -1px; }
+
+        /* Experience List */
+        .exp-item { display: flex; border-top: 1px solid #e2e8f0; padding: 3.5rem 0; }
+        .exp-dates { width: 30%; font-size: 1rem; color: var(--text-muted); font-weight: 600; padding-top: 0.2rem; text-transform: uppercase; letter-spacing: 1px; }
+        .exp-content { width: 70%; }
+        .exp-content h3 { font-family: var(--font-display); font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.5px; }
+        .exp-content h4 { font-size: 1.1rem; font-weight: 500; color: var(--accent-color); margin-bottom: 1.5rem; }
+        .exp-content ul { padding-left: 1.5rem; color: var(--text-muted); }
+        .exp-content ul li { margin-bottom: 0.8rem; }
+
+        /* Footer */
+        .site-footer { background-color: var(--bg-dark); color: var(--text-light); padding: 8rem 0 3rem 0; position: relative; overflow: hidden; }
+        .footer-top-grid { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 6rem; padding-bottom: 4rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .footer-headline { font-family: var(--font-display); font-size: 5rem; font-weight: 800; line-height: 1; letter-spacing: -2px; max-width: 600px; }
+        
+        .contact-btn {
+            display: inline-flex; align-items: center; gap: 1rem; background-color: var(--accent-color); color: #ffffff;
+            padding: 1.2rem 2.5rem; border-radius: 50px; font-size: 1.1rem; font-weight: 600; border: none; cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease; font-family: var(--font-body);
+        }
+        .contact-btn:hover { transform: translateY(-5px); background-color: #2563eb; }
+
+        .footer-bottom-grid { display: flex; justify-content: space-between; }
+        .footer-col h4 { font-family: var(--font-display); color: rgba(255, 255, 255, 0.5); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col ul li a, .footer-col p { color: var(--text-light); font-size: 1.1rem; font-weight: 500; }
+        .footer-col ul li a:hover { color: var(--accent-color); }
+        .copyright-bar {
+    margin-top: 6rem;
+    display: flex;
+    justify-content: center; /* This centers your name/year */
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+        /* === CONTACT FORM MODAL CSS === */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(5px);
+            z-index: 1000; display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        
+        .modal-content {
+            background: #ffffff; width: 90%; max-width: 700px; border-radius: 16px;
+            padding: 3rem; position: relative; max-height: 90vh; overflow-y: auto;
+            transform: translateY(20px); transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        
+        .close-btn {
+            position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none;
+            font-size: 1.5rem; cursor: pointer; color: var(--text-muted); transition: color 0.2s;
+        }
+        .close-btn:hover { color: var(--text-dark); }
+        
+        .modal-title { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--text-dark); margin-bottom: 2rem; text-align: center; }
+        
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group.full-width { grid-column: span 2; }
+        
+        .form-group label { font-size: 0.9rem; font-weight: 600; color: var(--text-dark); margin-bottom: 0.5rem; }
+        .form-group label span { color: #ef4444; } /* Red asterisk */
+        
+        .form-control {
+            padding: 0.8rem 1rem; border: 1px solid #e2e8f0; border-radius: 8px;
+            background-color: #f8fafc; font-family: var(--font-body); font-size: 1rem;
+            color: var(--text-dark); transition: border-color 0.2s;
+        }
+        .form-control:focus { outline: none; border-color: var(--accent-color); background-color: #ffffff; }
+        textarea.form-control { resize: vertical; min-height: 120px; }
+        
+        .file-upload-wrapper {
+            border: 2px dashed #cbd5e1; border-radius: 8px; padding: 2rem; text-align: center;
+            background-color: #f8fafc; cursor: pointer; transition: border-color 0.2s;
+        }
+        .file-upload-wrapper:hover { border-color: var(--accent-color); }
+        .file-upload-wrapper input[type="file"] { margin-top: 1rem; }
+        
+        .submit-btn {
+            background-color: var(--bg-dark); color: #ffffff; padding: 1rem 2.5rem;
+            border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; transition: background-color 0.2s; width: auto; display: inline-block;
+            margin-top: 1rem; font-family: var(--font-body);
+        }
+        .submit-btn:hover { background-color: var(--accent-color); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero { flex-direction: column; padding-top: 10rem; text-align: center; }
+            .hero h1 { font-size: 3rem; }
+            .hero p { margin: 0 auto 2rem auto; }
+            .exp-item { flex-direction: column; }
+            .exp-dates, .exp-content { width: 100%; }
+            .exp-dates { margin-bottom: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+            .footer-top-grid { flex-direction: column; align-items: flex-start; gap: 3rem; }
+            .footer-headline { font-size: 3.5rem; }
+            .footer-bottom-grid { flex-direction: column; gap: 3rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: span 1; }
+        }
+            /* --- VISIBILITY CORRECTION BLOCK --- */
+
+/* 1. Fix the "Overview" and "Work Experience" section titles */
+.section-padding {
+    background-color: #ffffff !important; /* Forces background to be white */
+}
+
+.section-title {
+    color: #0f172a !important; /* Forces titles to be dark blue/black */
+}
+
+#about div, #about p {
+    color: #334155 !important; /* Makes overview text dark gray */
+}
+
+/* 2. Fix the Work Experience list */
+.exp-item {
+    border-top: 1px solid #e2e8f0 !important;
+}
+
+.exp-content h3 {
+    color: #0f172a !important;
+}
+
+.exp-content h4, .exp-content h4 a {
+    color: var(--accent-color) !important;
+}
+
+.exp-content ul li {
+    color: #475569 !important;
+}
+
+.exp-dates {
+    color: #64748b !important;
+}
+
+/* 3. Fix the Contact Modal (The image you shared) */
+.modal-content {
+    background-color: #ffffff !important;
+    color: #1e293b !important;
+}
+
+.modal-title {
+    color: #0f172a !important;
+}
+
+.form-group label {
+    color: #1e293b !important; /* Makes "Name", "Email", etc. visible */
+}
+
+.form-control {
+    background-color: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #1e293b !important; /* Makes text you type dark */
+}
+
+.file-upload-wrapper p {
+    color: #64748b !important;
+}
+        /* --- MODERN EXPERIENCE GRID --- */
+/* --- UPDATED EXPERIENCE LAYOUT (FIXES THE GAP) --- */
+.exp-grid {
+    display: flex;
+    flex-wrap: wrap; /* Allows cards to drop to the next line */
+    gap: 2rem;
+    align-items: flex-start; /* This is the key! It prevents cards from stretching to match height */
+}
+
+.exp-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 2.5rem;
+    border-radius: 24px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    flex: 1 1 calc(50% - 2rem); /* Makes 2 columns on desktop */
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.exp-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-color);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+/* Ensure the bullet points don't have weird spacing */
+.exp-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0; /* Tightens the vertical space */
+}
+
+@media (max-width: 900px) {
+    .exp-card {
+        flex: 1 1 100%; /* Goes to 1 column on tablets/mobile */
     }
+}}
 
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
+.exp-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-color);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
 
-    body {
-      font-family: var(--font-display);
-      background: var(--bg);
-      color: var(--text-1);
-      line-height: 1.65;
-      overflow-x: hidden;
+.exp-date {
+    display: inline-block;
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.exp-header h3 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: #0f172a;
+}
+
+.company-link {
+    font-weight: 600;
+    color: #64748b;
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.exp-bullets {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.exp-bullets li {
+    color: #475569;
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.exp-bullets li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* Tech Tags */
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.tech-tags span {
+    background: #f1f5f9;
+    color: #475569;
+    padding: 0.4rem 0.9rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.exp-card:hover .tech-tags span {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+    .exp-grid { grid-template-columns: 1fr; }
+}
+
+/* --- WORLD-CLASS FOOTER --- */
+.site-footer {
+    background-color: #0b0f1a; /* Matches Hero deep navy */
+    padding: 10rem 0 4rem 0;
+    color: #f8fafc;
+}
+
+.footer-cta-box {
+    text-align: center;
+    margin-bottom: 8rem;
+    animation: fadeInUp 1s ease;
+}
+
+.footer-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 3rem;
+}
+
+.footer-headline span {
+    color: var(--accent-color);
+}
+
+.contact-btn-premium {
+    background: var(--accent-color);
+    color: white;
+    padding: 1.2rem 3rem;
+    border-radius: 100px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.contact-btn-premium:hover {
+    transform: scale(1.05);
+    background: #2563eb;
+    box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+}
+
+.footer-bottom-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 4rem;
+}
+
+.footer-col h4 {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+}
+
+.footer-col ul { list-style: none; padding: 0; }
+.footer-col ul li { margin-bottom: 0.8rem; }
+.footer-col a { 
+    color: #f8fafc; 
+    font-weight: 500; 
+    position: relative; 
+}
+
+.footer-col a:hover { color: var(--accent-color); }
+
+/* Animated underline effect for social links */
+.social-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.social-links a:hover::after {
+    width: 100%;
+}
+
+.copyright-bar {
+    margin-top: 6rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+    .footer-bottom-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-cta-box { margin-bottom: 4rem; }
+}
+        /* --- MOBILE SMOOTHNESS & RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            /* 1. Prevent horizontal shaking/scrolling */
+            body, html {
+                overflow-x: hidden;
+                position: relative;
+            }
+
+    /* Put this inside your @media (max-width: 768px) block */
+    .menu-toggle { 
+        display: block !important; 
     }
-
-    a { color:inherit; text-decoration:none; }
-
-    .container {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 5%;
-    }
-
-    /* ---- Section headers ---- */
-    .sec-label {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--copper);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-    .sec-label::before {
-      content: '';
-      display: inline-block;
-      width: 28px;
-      height: 1px;
-      background: var(--copper);
-    }
-
-    .sec-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.2rem, 5vw, 3.4rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      color: var(--text-1);
-    }
-    .sec-title em {
-      font-style: normal;
-      color: var(--copper);
-    }
-
-    section { padding: 6rem 0; }
-
-    /* =====================================================
-       CIRCUIT BOARD CANVAS BACKGROUND
-    ===================================================== */
-    #circuit-canvas {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.35;
-    }
-
-    /* =====================================================
-       NAV
-    ===================================================== */
-    .glass-nav {
-      position: fixed;
-      top: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(92%, 1100px);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1.6rem;
-      height: var(--nav-h);
-      background: rgba(12,13,15,0.75);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      transition: background 0.3s;
-    }
-
-    .nav-logo {
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      letter-spacing: 0.04em;
-      color: var(--text-1);
-    }
-    .nav-logo span { color: var(--copper); }
 
     .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: var(--text-2);
-    }
-    .nav-links a {
-      transition: color 0.2s;
-      position: relative;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 1px;
-      background: var(--copper);
-      transition: width 0.3s;
-    }
-    .nav-links a:hover { color: var(--text-1); }
-    .nav-links a:hover::after { width: 100%; }
-
-    .nav-cta {
-      background: var(--copper);
-      color: #0c0d0f !important;
-      padding: 0.55rem 1.25rem;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 0.85rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .nav-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px var(--copper-glow);
-    }
-    .nav-cta::after { display: none !important; }
-
-    /* Hamburger */
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-    }
-
-    /* =====================================================
-       HERO
-    ===================================================== */
-    .hero-wrapper {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      z-index: 1;
-      padding-top: calc(var(--nav-h) + 32px);
-      padding-bottom: 4rem;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 4rem;
-      align-items: center;
-      width: 100%;
-    }
-
-    .hero-kicker {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--copper);
-      margin-bottom: 1.2rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.2s ease forwards;
-    }
-
-    .hero h1 {
-      font-size: clamp(3rem, 7vw, 5.2rem);
-      font-weight: 900;
-      line-height: 1.04;
-      letter-spacing: -0.04em;
-      margin-bottom: 1.6rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.35s ease forwards;
-    }
-    .hero h1 .name-line {
-      display: block;
-      color: var(--text-1);
-    }
-    .hero h1 .title-line {
-      display: block;
-      color: var(--copper);
-      -webkit-text-stroke: 1px var(--copper);
-    }
-
-    .hero-desc {
-      font-size: 1.1rem;
-      color: var(--text-2);
-      max-width: 540px;
-      margin-bottom: 2.4rem;
-      line-height: 1.75;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.5s ease forwards;
-    }
-
-    .hero-btns {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.65s ease forwards;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: var(--copper);
-      color: #0c0d0f;
-      padding: 0.85rem 2rem;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px var(--copper-glow);
-    }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      border: 1px solid var(--border-lit);
-      color: var(--text-2);
-      padding: 0.85rem 2rem;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
-    }
-    .btn-ghost:hover {
-      border-color: var(--copper);
-      color: var(--copper);
-      background: var(--copper-dim);
-    }
-
-    /* Photo */
-    .hero-photo-wrap {
-      position: relative;
-      opacity: 0;
-      animation: fadeUp 0.9s 0.4s ease forwards;
-      flex-shrink: 0;
-    }
-    .hero-photo-frame {
-      width: 320px;
-      height: 380px;
-      border-radius: 24px;
-      overflow: hidden;
-      position: relative;
-      border: 1px solid var(--border-lit);
-      box-shadow: 0 0 60px rgba(200,126,40,0.15), inset 0 0 40px rgba(0,0,0,0.5);
-    }
-    .hero-photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-      filter: saturate(0.85);
-    }
-    .hero-photo-frame::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent 55%, rgba(12,13,15,0.7));
-    }
-    .photo-corner {
-      position: absolute;
-      width: 22px; height: 22px;
-      border-color: var(--copper);
-      border-style: solid;
-      opacity: 0.7;
-    }
-    .photo-corner.tl { top:-6px; left:-6px; border-width: 2px 0 0 2px; }
-    .photo-corner.tr { top:-6px; right:-6px; border-width: 2px 2px 0 0; }
-    .photo-corner.bl { bottom:-6px; left:-6px; border-width: 0 0 2px 2px; }
-    .photo-corner.br { bottom:-6px; right:-6px; border-width: 0 2px 2px 0; }
-
-    /* ---- Stats strip below hero ---- */
-    .stats-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      overflow: hidden;
-      margin-top: 3.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.9s ease forwards;
-    }
-    .stat-cell {
-      background: var(--bg-1);
-      padding: 1.6rem 1.8rem;
-      transition: background 0.25s;
-    }
-    .stat-cell:hover { background: var(--bg-2); }
-    .stat-num {
-      font-family: var(--font-mono);
-      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-      font-weight: 700;
-      color: var(--copper);
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--text-3);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    /* =====================================================
-       ABOUT
-    ===================================================== */
-    #about { background: var(--bg); }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .about-body {
-      font-size: 1.08rem;
-      color: var(--text-2);
-      line-height: 1.85;
-    }
-    .about-body p + p { margin-top: 1.2rem; }
-    .about-body strong { color: var(--text-1); font-weight: 600; }
-
-    .about-edu {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 2rem;
-      margin-top: 2rem;
-    }
-    .about-edu-label {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--copper);
-      margin-bottom: 1rem;
-    }
-    .edu-item { display: flex; gap: 1rem; align-items: flex-start; }
-    .edu-icon {
-      width: 36px; height: 36px;
-      background: var(--copper-dim);
-      border: 1px solid var(--border-lit);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .edu-icon svg { color: var(--copper); }
-    .edu-degree { font-weight: 700; font-size: 0.97rem; color: var(--text-1); }
-    .edu-school { font-size: 0.85rem; color: var(--text-2); margin-top: 0.2rem; }
-    .edu-year {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--text-3);
-      margin-top: 0.3rem;
-    }
-
-    /* Tools grid */
-    .tools-title {
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--text-1);
-      margin-bottom: 1.2rem;
-    }
-    .tools-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-    }
-    .tool-chip {
-      font-family: var(--font-mono);
-      font-size: 0.73rem;
-      letter-spacing: 0.04em;
-      padding: 0.45rem 0.9rem;
-      border-radius: 8px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      color: var(--text-2);
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
-    }
-    .tool-chip:hover {
-      border-color: var(--copper);
-      color: var(--copper);
-      background: var(--copper-dim);
-    }
-    .tool-chip.cat-sim    { border-color: rgba(45,212,191,0.2);  color: var(--teal); background: var(--teal-dim); }
-    .tool-chip.cat-hw     { border-color: rgba(200,126,40,0.3);  color: var(--amber-soft); background: var(--copper-dim); }
-    .tool-chip.cat-sw     { border-color: rgba(130,100,230,0.3); color: #b09cf0; background: rgba(130,100,230,0.08); }
-
-    /* =====================================================
-       SKILLS — Competency bars
-    ===================================================== */
-    #skills { background: var(--bg-1); }
-
-    .skills-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem 5rem;
-      margin-top: 3rem;
-    }
-
-    .skill-row { margin-bottom: 1.4rem; }
-    .skill-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.5rem;
-    }
-    .skill-name {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text-1);
-    }
-    .skill-pct {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--copper);
-    }
-    .skill-bar-bg {
-      height: 4px;
-      background: var(--border);
-      border-radius: 99px;
-      overflow: hidden;
-    }
-    .skill-bar-fill {
-      height: 100%;
-      border-radius: 99px;
-      background: linear-gradient(90deg, var(--copper), var(--amber-soft));
-      width: 0;
-      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
-    }
-    .skill-bar-fill.teal-bar {
-      background: linear-gradient(90deg, var(--teal), #6ee7e7);
-    }
-
-    /* =====================================================
-       EXPERIENCE
-    ===================================================== */
-    #experience { background: var(--bg); }
-
-    .exp-timeline {
-      position: relative;
-      margin-top: 3rem;
-    }
-    .exp-timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 8px;
-      bottom: 0;
-      width: 1px;
-      background: linear-gradient(to bottom, var(--copper), transparent);
-    }
-
-    .exp-item {
-      padding-left: 2.5rem;
-      margin-bottom: 3.5rem;
-      position: relative;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s, transform 0.6s;
-    }
-    .exp-item.visible { opacity:1; transform:translateY(0); }
-
-    .exp-dot {
-      position: absolute;
-      left: -5px;
-      top: 8px;
-      width: 11px; height: 11px;
-      border-radius: 50%;
-      background: var(--copper);
-      border: 2px solid var(--bg);
-      box-shadow: 0 0 10px var(--copper-glow);
-    }
-
-    .exp-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 2rem 2.2rem;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    .exp-card:hover {
-      border-color: var(--border-lit);
-      box-shadow: 0 0 30px rgba(200,126,40,0.07);
-    }
-
-    .exp-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.8rem;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-    }
-    .exp-date {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--copper);
-      letter-spacing: 0.08em;
-    }
-    .exp-badge {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      padding: 0.25rem 0.7rem;
-      border-radius: 6px;
-      background: var(--copper-dim);
-      border: 1px solid var(--border-lit);
-      color: var(--amber-soft);
-      letter-spacing: 0.05em;
-    }
-    .exp-badge.current { background: rgba(45,212,191,0.1); border-color: rgba(45,212,191,0.3); color: var(--teal); }
-
-    .exp-role {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--text-1);
-      margin-bottom: 0.3rem;
-      letter-spacing: -0.02em;
-    }
-    .exp-company {
-      font-size: 0.9rem;
-      color: var(--copper);
-      font-weight: 600;
-      margin-bottom: 1.2rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: opacity 0.2s;
-    }
-    .exp-company:hover { opacity: 0.75; }
-    .exp-company svg { flex-shrink: 0; }
-
-    .exp-bullets {
-      list-style: none;
-      padding: 0;
-      color: var(--text-2);
-      font-size: 0.93rem;
-      line-height: 1.75;
-      margin-bottom: 1.4rem;
-    }
-    .exp-bullets li {
-      position: relative;
-      padding-left: 1.4rem;
-      margin-bottom: 0.55rem;
-    }
-    .exp-bullets li::before {
-      content: '▸';
-      position: absolute;
-      left: 0;
-      color: var(--copper);
-      font-size: 0.7rem;
-      top: 0.22em;
-    }
-
-    .tech-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .tech-tags span {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      padding: 0.3rem 0.75rem;
-      border-radius: 6px;
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      color: var(--text-3);
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .exp-card:hover .tech-tags span {
-      color: var(--text-2);
-      border-color: rgba(200,126,40,0.2);
-    }
-
-    /* =====================================================
-       PROJECTS
-    ===================================================== */
-    #projects { background: var(--bg-1); }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.4rem;
-      margin-top: 3rem;
-    }
-
-    .proj-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 1.8rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s, transform 0.5s, border-color 0.3s, box-shadow 0.3s;
-    }
-    .proj-card.visible { opacity:1; transform:translateY(0); }
-
-    .proj-card:hover {
-      border-color: var(--border-lit);
-      transform: translateY(-5px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 30px rgba(200,126,40,0.06);
-    }
-
-    .proj-icon {
-      width: 44px; height: 44px;
-      background: var(--copper-dim);
-      border: 1px solid var(--border-lit);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-    }
-
-    .proj-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-1);
-      line-height: 1.3;
-    }
-    .proj-desc {
-      font-size: 0.88rem;
-      color: var(--text-2);
-      line-height: 1.65;
-      flex: 1;
-    }
-    .proj-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-    .proj-tags span {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      padding: 0.25rem 0.6rem;
-      border-radius: 5px;
-      background: var(--teal-dim);
-      color: var(--teal);
-      border: 1px solid rgba(45,212,191,0.15);
-    }
-    .proj-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--copper);
-      transition: gap 0.2s;
-      margin-top: auto;
-    }
-    .proj-link:hover { gap: 0.7rem; }
-
-    /* =====================================================
-       PUBLICATIONS — compact list
-    ===================================================== */
-    #publications { background: var(--bg); }
-    .pub-list { margin-top: 2.5rem; }
-    .pub-item {
-      display: flex;
-      gap: 1.2rem;
-      padding: 1.4rem 0;
-      border-bottom: 1px solid var(--border);
-      align-items: flex-start;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.5s, transform 0.5s;
-    }
-    .pub-item.visible { opacity:1; transform:translateY(0); }
-    .pub-num {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--text-3);
-      flex-shrink: 0;
-      margin-top: 0.15rem;
-    }
-    .pub-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-1);
-      margin-bottom: 0.25rem;
-      line-height: 1.45;
-    }
-    .pub-venue {
-      font-size: 0.82rem;
-      color: var(--text-3);
-      font-style: italic;
-    }
-    .pub-venue a { color: var(--copper); }
-    .pub-venue a:hover { text-decoration: underline; }
-
-    /* =====================================================
-       FOOTER / CONTACT
-    ===================================================== */
-    .site-footer {
-      background: var(--bg-1);
-      border-top: 1px solid var(--border);
-      padding: 7rem 0 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .site-footer::before {
-      content: '';
-      position: absolute;
-      top: -120px; left: 50%;
-      transform: translateX(-50%);
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(200,126,40,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .footer-cta {
-      text-align: center;
-      margin-bottom: 5rem;
-    }
-    .footer-cta-label {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--copper);
-      margin-bottom: 1.2rem;
-    }
-    .footer-headline {
-      font-size: clamp(2.4rem, 6vw, 4.5rem);
-      font-weight: 900;
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      margin-bottom: 2.5rem;
-    }
-    .footer-headline span { color: var(--copper); }
-
-    .cta-btn-group {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem;
-      padding-top: 3.5rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-brand p {
-      font-size: 0.88rem;
-      color: var(--text-3);
-      line-height: 1.7;
-      margin-top: 0.8rem;
-      max-width: 260px;
-    }
-    .footer-col-title {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-3);
-      margin-bottom: 1.2rem;
-    }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 0.7rem; }
-    .footer-col ul li a {
-      font-size: 0.9rem;
-      color: var(--text-2);
-      transition: color 0.2s;
-    }
-    .footer-col ul li a:hover { color: var(--copper); }
-
-    .copyright {
-      margin-top: 4rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--text-3);
-    }
-    .copyright a { color: var(--copper); }
-
-    /* =====================================================
-       CONTACT MODAL
-    ===================================================== */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 2000;
-      background: rgba(12,13,15,0.85);
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s;
-    }
-    .modal-overlay.active { opacity:1; pointer-events:auto; }
-
-    .modal-box {
-      background: var(--bg-2);
-      border: 1px solid var(--border-lit);
-      border-radius: 20px;
-      padding: 3rem;
-      width: min(94vw, 640px);
-      max-height: 90vh;
-      overflow-y: auto;
-      position: relative;
-      transform: translateY(20px);
-      transition: transform 0.3s;
-    }
-    .modal-overlay.active .modal-box { transform: translateY(0); }
-
-    .modal-close {
-      position: absolute;
-      top: 1.2rem; right: 1.2rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--text-3);
-      font-size: 1.4rem;
-      line-height: 1;
-      transition: color 0.2s;
-    }
-    .modal-close:hover { color: var(--text-1); }
-
-    .modal-title {
-      font-size: 1.8rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.3rem;
-      color: var(--text-1);
-    }
-    .modal-sub {
-      font-size: 0.88rem;
-      color: var(--text-3);
-      margin-bottom: 2rem;
-    }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-    .form-row.single { grid-template-columns: 1fr; }
-
-    .f-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .f-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-2);
-      letter-spacing: 0.04em;
-    }
-    .f-label span { color: var(--copper); }
-
-    .f-control {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      color: var(--text-1);
-      font-family: var(--font-display);
-      font-size: 0.9rem;
-      transition: border-color 0.2s;
-      width: 100%;
-    }
-    .f-control:focus { outline: none; border-color: var(--copper); }
-    .f-control option { background: var(--bg-2); }
-    textarea.f-control { resize: vertical; min-height: 110px; }
-
-    .upload-zone {
-      border: 1.5px dashed var(--border);
-      border-radius: 8px;
-      padding: 1.5rem;
-      text-align: center;
-      transition: border-color 0.2s;
-      cursor: pointer;
-    }
-    .upload-zone:hover { border-color: var(--copper); }
-    .upload-zone p { font-size: 0.82rem; color: var(--text-3); }
-    .upload-zone input { margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-2); }
-
-    .submit-btn {
-      margin-top: 1.5rem;
-      background: var(--copper);
-      color: #0c0d0f;
-      border: none;
-      border-radius: 10px;
-      padding: 0.9rem 2.2rem;
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px var(--copper-glow);
-    }
-
-    /* =====================================================
-       SCROLL REVEAL — shared
-    ===================================================== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .reveal.visible { opacity:1; transform:translateY(0); }
-
-    /* =====================================================
-       ANIMATIONS
-    ===================================================== */
-    @keyframes fadeUp {
-      from { opacity:0; transform:translateY(28px); }
-      to   { opacity:1; transform:translateY(0); }
-    }
-
-    /* =====================================================
-       RESPONSIVE
-    ===================================================== */
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; text-align: center; }
-      .hero-photo-wrap { display: flex; justify-content: center; order: -1; }
-      .hero-photo-frame { width: 240px; height: 290px; }
-      .hero-btns { justify-content: center; }
-      .stats-strip { grid-template-columns: 1fr 1fr; }
-      .about-grid { grid-template-columns: 1fr; }
-      .skills-wrapper { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .nav-links { display: none; }
-      .menu-toggle { display: block; }
-      .nav-links.mobile-open {
-        display: flex;
+        display: none; /* Hide links by default on mobile */
         flex-direction: column;
         position: absolute;
-        top: calc(var(--nav-h) + 8px);
-        left: 0; right: 0;
-        background: rgba(12,13,15,0.97);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 1.5rem;
-        gap: 1.2rem;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: rgba(15, 23, 42, 0.95);
+        padding: 2rem;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
         text-align: center;
-      }
     }
 
-    @media (max-width: 600px) {
-      .stats-strip { grid-template-columns: 1fr 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .hero-photo-frame { width: 200px; height: 250px; }
-      .projects-grid { grid-template-columns: 1fr; }
+    /* This class is added by JavaScript when you click the menu */
+    .nav-links.mobile-active {
+        display: flex;
     }
 
-    /* =====================================================
-       SCROLLBAR
-    ===================================================== */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--border-lit); border-radius: 99px; }
+            /* 2. Shrink Hero Section for small screens */
+            .hero-wrapper {
+                padding-top: 80px; /* Space for the fixed nav */
+                min-height: auto;
+                padding-bottom: 4rem;
+            }
 
-    /* =====================================================
-       SELECTION
-    ===================================================== */
-    ::selection { background: var(--copper-dim); color: var(--amber-soft); }
-  </style>
+            .hero {
+                flex-direction: column; /* Stacks text and image */
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem; /* Scale down the massive font */
+                line-height: 1.1;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+                margin: 0 auto 2rem auto;
+            }
+
+            .hero-btns {
+                flex-direction: column; /* Stack buttons vertically */
+                width: 100%;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%; /* Full width buttons for easier tapping */
+                display: block;
+            }
+
+            /* 3. Scale down the Hero Image */
+            .hero-img-container {
+                justify-content: center;
+                margin-top: 2rem;
+            }
+
+            .hero-img {
+                max-width: 250px; /* Keeps image tidy on mobile */
+            }
+
+            .img-outline {
+                display: none; /* Removes the offset border to prevent horizontal scroll */
+            }
+
+            /* 4. Fix Navigation Width */
+            .glass-nav {
+                width: 94%;
+                left: 3%;
+                padding: 1rem;
+                top: 10px;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            /* 5. Clean up Experience Cards */
+            .exp-card {
+                min-width: 100%; /* Force cards to take full width */
+                padding: 1.5rem;
+            }
+
+            .exp-header h3 {
+                font-size: 1.4rem;
+            }
+
+            /* 6. Fix Contact Modal for Touch */
+            .modal-content {
+                padding: 1.5rem;
+                width: 95%;
+                margin: 10px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr; /* Force single column form */
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+        }
+        
+    </style>
 </head>
 <body>
 
-<!-- ===================== CIRCUIT CANVAS BG ===================== -->
-<canvas id="circuit-canvas"></canvas>
-
-<!-- ===================== NAV ===================== -->
-<nav class="glass-nav" id="mainNav">
-  <div class="nav-logo">NS<span>.</span></div>
-
-  <button class="menu-toggle" onclick="toggleNav()" aria-label="Toggle menu">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
-      <line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/>
-    </svg>
-  </button>
-
-  <div class="nav-links" id="navLinks">
-    <a href="#about"        onclick="closeNav()">About</a>
-    <a href="#skills"       onclick="closeNav()">Skills</a>
-    <a href="#experience"   onclick="closeNav()">Experience</a>
-    <a href="#projects"     onclick="closeNav()">Projects</a>
-    <a href="#publications" onclick="closeNav()">Publications</a>
-    <a href="#contact" class="nav-cta" onclick="openModal(); closeNav()">Let's Talk</a>
-  </div>
-</nav>
-
-<!-- ===================== HERO ===================== -->
-<div class="hero-wrapper">
-  <div class="container">
-    <div class="hero">
-      <div class="hero-text">
-        <div class="hero-kicker">Power Electronics Engineer</div>
-        <h1>
-          <span class="name-line">Niranjan</span>
-          <span class="title-line">Shrestha.</span>
-        </h1>
-        <p class="hero-desc">
-          MASc in Electrical Engineering. Designing high-efficiency power converters,
-          wireless power transfer systems, and SiC-based inverters — from simulation
-          to validated silicon.
-        </p>
-        <div class="hero-btns">
-          <a href="#experience" class="btn-primary">
-            View My Work
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-          <a href="Niranjan_Shrestha_Resume.pdf" target="_blank" class="btn-ghost">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            Resume
-          </a>
-          <a href="https://www.linkedin.com/in/niranjan-shrestha-a89482137/" target="_blank" class="btn-ghost">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            LinkedIn
-          </a>
+<nav class="glass-nav">
+        <div class="logo">MY PORTFOLIO<span></span></div>
+        
+        <div class="menu-toggle" onclick="toggleMobileMenu()" style="cursor:pointer; display:none;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
         </div>
 
-        <div class="stats-strip">
-          <div class="stat-cell">
-            <div class="stat-num" data-count="4">0</div>
-            <div class="stat-label">Years Experience</div>
-          </div>
-          <div class="stat-cell">
-            <div class="stat-num" data-count="7.7" data-suffix="kW">0</div>
-            <div class="stat-label">WPT System Designed</div>
-          </div>
-          <div class="stat-cell">
-            <div class="stat-num" data-count="5" data-prefix="">0</div>
-            <div class="stat-label">Publications</div>
-          </div>
-          <div class="stat-cell">
-            <div class="stat-num" data-count="3" data-suffix="×">0</div>
-            <div class="stat-label">Industry Roles</div>
-          </div>
+        <div class="nav-links" id="navLinks">
+            <a href="#about" onclick="toggleMobileMenu()">About</a>
+            <a href="#experience" onclick="toggleMobileMenu()">Experience</a>
+            <a href="#contact" class="nav-cta" onclick="openModal(); toggleMobileMenu()">Let's Talk</a>
         </div>
-      </div>
+    </nav>
 
-      <div class="hero-photo-wrap">
-        <div class="hero-photo-frame">
-          <img src="nian.jpeg" alt="Niranjan Shrestha" />
-          <div class="photo-corner tl"></div>
-          <div class="photo-corner tr"></div>
-          <div class="photo-corner bl"></div>
-          <div class="photo-corner br"></div>
+    <div class="hero-wrapper">
+        <div class="spotlight"></div>
+        <div class="container">
+            <section class="hero">
+                <div class="hero-text">
+                    <div class="badge">Niranjan Shrestha</div>
+                    <h1>Power Electronics <br><span>Enthusiast</span></h1>
+                    <p>Results-driven and self-motivated Electrical Engineer and Power Electronics Enthusiast with 4+ years of experience in high-frequency/low-frequency power converter design, converter circuit modeling, simulation, control system design, and hardware testing/validation.</p>
+                    <div class="hero-btns">
+                        <a href="#experience" class="btn-primary">My Work</a>
+                        <a href="https://www.linkedin.com/in/niranjan-shrestha-a89482137/" target="_blank" class="btn-secondary btn-linkedin">LinkedIn</a>
+                    </div>
+                </div>
+                <div class="hero-img-container">
+                    <div class="img-outline"></div>
+                    <img src="nian.jpeg" alt="Niranjan Shrestha" class="hero-img">
+                </div>
+            </section>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+    </div>    </div>
 
-<!-- ===================== ABOUT ===================== -->
-<section id="about">
-  <div class="container">
-    <div class="reveal">
-      <div class="sec-label">About</div>
-      <h2 class="sec-title">Engineering with <em>Precision</em></h2>
-    </div>
-
-    <div class="about-grid" style="margin-top:3rem;">
-      <div>
-        <div class="about-body reveal">
-          <p>
-            I completed my <strong>Master of Applied Science in Electrical and Computer Engineering</strong>
-            at Ontario Tech University, where my thesis focused on wireless charging,
-            power converter design &amp; development, hybrid compensation networks, and
-            closed-loop control system design.
-          </p>
-          <p>
-            Currently at <strong>Wireless PnC Inc.</strong>, I lead end-to-end development of WPT
-            systems for EVs, E-bikes, and E-scooters — spanning from system and circuit level simulation, 
-            control system design, PCB design, hardware testing and validation, &amp; fault analysis & diagnosis.
-          </p>
-          <p>
-            I thrive at the intersection of modeling, simulation and hardware validation: building a model in
-            MATLAB Simulink/Simscape for system level simulation, LTspice for circuit level simulation, 
-            designing and fabricating the PCBs, validating it on the test bench setup integrating closed loop 
-            control for CC/CV charging, creating indoor and outdoor test plans and executing it.
-          </p>
-        </div>
-
-        <div class="about-edu reveal" style="margin-top:2rem;">
-          <div class="about-edu-label">Education</div>
-          <div class="edu-item" style="margin-bottom:1.2rem;">
-            <div class="edu-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+    <section id="about" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Overview</h2>
+            <div style="font-size: 1.25rem; color: var(--text-muted); max-width: 850px;">
+                <p style="margin-bottom: 1.5rem;">I completed my Master of Applied Science in Electrical and Computer Engineering at Ontario Tech University, with my thesis focused on wireless charging, power converter design & development, hybrid compensation network and control system design.</p>
+                <p>I am seeking a suitable role to leverage my knowledge and skills in power electronics design and development projects, circuit modeling and simulation, hardware testing and validation.</p>
             </div>
-            <div>
-              <div class="edu-degree">M.A.Sc. in Electrical &amp; Computer Engineering</div>
-              <div class="edu-school">Ontario Tech University, Oshawa, ON</div>
-              <div class="edu-year">Jan 2022 — Apr 2024 · Thesis: A hybrid compensation-based misalignment tolerant wireless power transfer system for e-mobility </div>
+        </div>
+    </section>
+
+<section id="experience" class="section-padding">
+    <div class="container">
+        <h2 class="section-title">Work Experience</h2>
+        
+        <div class="exp-grid">
+            <div class="exp-card">
+                <div class="exp-header">
+                    <span class="exp-date">May 2024 — Present</span>
+                    <h3>Electrical Engineer</h3>
+                    <a href="https://wirelesspnc.com/" target="_blank" class="company-link">Wireless PnC Inc. Victoria, BC</a>
+                </div>
+                <ul class="exp-bullets">
+                    <li>Design, modeling, simulation, control, and development of power converters for wireless power transfer systems for E-scooters, E-bikes, and EVs.</li>
+                    <li>Conducting research on novel converters and controls for wireless charging systems.</li>
+                    <li>PCB design and fabrication of different converters (Boost PFC rectifier, Inverter, etc).</li>
+                    <li>Generating budgets and time estimates for the development of new prototypes.</li>
+                    <li>Mentoring and supervising electrical interns for simulation, hardware design, end-to-end development, and test validation for a 7.7 kW WPT system.</li>
+                    <li>Collecting information on operational performance, performing root-cause analysis of identified faults, and troubleshooting them.</li>
+                    <li>Maintaining appropriate design documentation and reports using company-designated design guidelines, and automotive industry standards</li>
+                    <li>Writing validation test plans for all phases of the projects and supporting vehicle-level bench testing activities and reporting findings.</li>
+
+                </ul>
+                <div class="tech-tags">
+                    <span>Wireless Charging System</span>
+                    <span>PCB Design</span>
+                    <span>Simulation & Hardware Validation</span>
+                    <span>Fault-finding & Troubleshooting</span>
+                    <span>Control Algorithm Design</span>
+                </div>
             </div>
-          </div>
-          <div class="edu-item">
-            <div class="edu-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+
+            <div class="exp-card">
+                <div class="exp-header">
+                    <span class="exp-date">Jan 2022 — Apr 2024</span>
+                    <h3>Graduate Research Assistant</h3>
+                    <a href="https://engineering.ontariotechu.ca/steer/index.php" target="_blank" class="company-link">STEER Group · Ontario Tech University, Oshawa, ON</a>
+                </div>
+                <ul class="exp-bullets">
+                   <li>Completion of end-to-end R&D of a high-efficiency resonant WPT system (incorporating novel compensation network and phase shift control for CC/CV charging) funded by NSERC and MITACS in collaboration with an industry partner.</li>
+                   <li>Design, modeling, simulation, control, and development of power converters, including DC-DC converters, inverters, rectifiers, and resonant converters, particularly applicable to wireless power transfer systems for EVs.</li>
+                   <li>Experimental testing and validation of WPT systems with various coil configurations and compensation circuits.</li>
+
+                    
+                </ul>
+                <div class="tech-tags">
+                    <span>Wireless Charging System</span>
+                    <span>Hybrid Compensation Network</span>
+                    <span>Misalignment Tolerant WPT</span>
+                    <span>Phase-shift Control Algorithm</span>
+                    <span>Simulation & Hardware Validation</span>
+                </div>
             </div>
-            <div>
-              <div class="edu-degree">B.E. (Electrical Engineering)</div>
-              <div class="edu-school">Tribhuvan University, Nepal</div>
-              <div class="edu-year">Nov 2013 — Sep 2017 . Field of interest: Power Electronics & Control System </div>
+
+            <div class="exp-card">
+                <div class="exp-header">
+                    <span class="exp-date">Jun 2022 — Apr 2023</span>
+                    <h3>Electrical Engineering Intern</h3>
+                    <a href="https://www.oshawapower.ca/" target="_blank" class="company-link">Oshawa Power · Oshawa, ON</a>
+                </div>
+                <ul class="exp-bullets">
+                    <li>Creating regression models to forecast energy production and revenue generation from several solar PV generation systems and wind turbine generation systems, along with formulating its detailed analysis report.</li>
+                    <li>Assist in preparing micro-embedded generation connection applications for the net metering system.</li>
+                    <li>Reviewing and approving major and non-major equipment based on the compliance of their test reports according to the corresponding industry standards.</li>
+                </ul>
+                <div class="tech-tags">
+                    <span>Regression Models</span>
+                    <span>Renewable Energy Forecasting</span>
+                    <span>Micro-embedded Generation Connection Application</span>
+                    <span>Equipment Review and Approval</span>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-
-      <div class="reveal">
-        <div class="tools-title">Tools &amp; Software</div>
-        <div class="tools-grid">
-          <!-- Simulation -->
-          <span class="tool-chip cat-sim">PSIM</span>
-          <span class="tool-chip cat-sim">PLECS</span>
-          <span class="tool-chip cat-sim">LTspice</span>
-          <span class="tool-chip cat-sim">MATLAB / Simulink</span>
-          <span class="tool-chip cat-sim">FEMM</span>
-          <!-- Hardware -->
-          <span class="tool-chip cat-hw">KiCad</span>
-          <span class="tool-chip cat-hw">Oscilloscope</span>
-          <span class="tool-chip cat-hw">DC Electronic Load</span>
-          <span class="tool-chip cat-hw">Power Analyzer</span>
-          <span class="tool-chip cat-hw">Variac</span>
-          <span class="tool-chip cat-hw">SiC Gate Drivers</span>
-          <!-- Software -->
-          <span class="tool-chip cat-sw">Python</span>
-          <span class="tool-chip cat-sw">C</span>
-          <span class="tool-chip cat-sw">LaTeX</span>
-          <span class="tool-chip cat-sw">Git</span>
-          <span class="tool-chip cat-sw">ANSYS Maxwell</span>
-        </div>
-
-        <div style="margin-top:2rem;">
-          <div class="tools-title" style="margin-bottom:1rem;">Industry Knowledge</div>
-          <div class="tools-grid">
-            <span class="tool-chip">Wireless Power Transfer (WPT)</span>
-            <span class="tool-chip">Boost PFC Rectifier</span>
-            <span class="tool-chip">Full-Bridge Inverter</span>
-            <span class="tool-chip">Resonant Converters</span>
-            <span class="tool-chip">Thermal Analysis</span>
-            <span class="tool-chip">CC/CV Control</span>
-            <span class="tool-chip">Phase-Shift Modulation</span>
-            <span class="tool-chip">Gate Drive Design</span>
-            <span class="tool-chip">EMI Filtering</span>
-            <span class="tool-chip">Automotive Standards</span>
-            <span class="tool-chip">NSERC / MITACS Projects</span>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
 
-<!-- ===================== SKILLS ===================== -->
-<section id="skills">
-  <div class="container">
-    <div class="reveal">
-      <div class="sec-label">Competency</div>
-      <h2 class="sec-title">Technical <em>Skills</em></h2>
+    <footer id="contact" class="site-footer">
+    <div class="container">
+        <div class="footer-cta-box">
+            <h2 class="footer-headline">Ready to <br><span>build something?</span></h2>
+            <button class="contact-btn-premium" onclick="openModal()">
+                Get In Touch
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </button>
+        </div>
+
+        <div class="footer-bottom-grid">
+            <div class="footer-col">
+                <h4>Based In</h4>
+                <p>Oshawa, ON, Canada</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Socials</h4>
+                <ul class="social-links">
+                    <li><a href="https://www.linkedin.com/in/niranjan-shrestha-a89482137/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://scholar.google.ca/citations?hl=en&user=j9gA7tEAAAAJ" target="_blank">Google Scholar</a></li>
+                    <li><a href="https://github.com/Niranjan1012" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="Niranjan_Shrestha_Resume.pdf" target="_blank" class="footer-link">View Resume</a></li>
+                    <li><a href="#about">About Me</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright-bar">
+            <span>&copy; 2026 Niranjan Shrestha</span>
+        </div>
     </div>
-
-    <div class="skills-wrapper reveal" id="skillsWrapper">
-      <!-- Left column -->
-      <div>
-        <div class="skill-row">
-          <div class="skill-header"><span class="skill-name">Power Converter Design</span><span class="skill-pct">95%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="95"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-header"><span class="skill-name">WPT &amp; Resonant Systems</span><span class="skill-pct">93%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="93"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-header"><span class="skill-name">PCB Design (KiCad)</span><span class="skill-pct">88%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="88"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-header"><span class="skill-name">Hardware Bring-up &amp; Validation</span><span class="skill-pct">90%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="90"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-header"><span class="skill-name">Control System Design</span><span class="skill-pct">85%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="85"></div></div>
-        </div>
-      </div>
-      <!-- Right column -->
-      <div>
-        <div class="skill-row">
-          <div class="skill-header"><span class="skill-name">PSIM / PLECS Simulation</span><span class="skill-pct">92%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill teal-bar" data-w="92"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-header"><span class="skill-name">MATLAB / Simulink</span><span class="skill-pct">88%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill teal-bar" data-w="88"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-header"><span class="skill-name">Thermal &amp; Loss Analysis</span><span class="skill-pct">84%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill teal-bar" data-w="84"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-header"><span class="skill-name">Fault Diagnosis &amp; Root-Cause</span><span class="skill-pct">87%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill teal-bar" data-w="87"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-header"><span class="skill-name">Technical Writing &amp; Reports</span><span class="skill-pct">80%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill teal-bar" data-w="80"></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== EXPERIENCE ===================== -->
-<section id="experience">
-  <div class="container">
-    <div class="reveal">
-      <div class="sec-label">Work Experience</div>
-      <h2 class="sec-title">Where I've <em>Built</em></h2>
-    </div>
-
-    <div class="exp-timeline">
-      <!-- Job 1 -->
-      <div class="exp-item">
-        <div class="exp-dot"></div>
-        <div class="exp-card">
-          <div class="exp-meta">
-            <span class="exp-date">May 2024 — Present</span>
-            <span class="exp-badge current">Current Role</span>
-          </div>
-          <div class="exp-role">Electrical Engineer</div>
-          <a href="https://wirelesspnc.com/" target="_blank" class="exp-company">
-            Wireless PnC Inc. · Victoria, BC
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
-          <ul class="exp-bullets">
-            <li>Design, modeling, simulation, control, and development of power converters for WPT systems targeting e-scooters, e-bikes, and EVs up to 7.7 kW.</li>
-            <li>PCB design and fabrication of Boost PFC rectifier, full-bridge SiC inverter, and resonant compensation networks in KiCad.</li>
-            <li>Root-cause analysis and troubleshooting of hardware faults; generating structured validation test plans for all project phases.</li>
-            <li>Mentoring and supervising electrical interns through end-to-end hardware development and bench validation activities.</li>
-            <li>Maintaining design documentation to automotive industry standards; generating budgets and time estimates for new prototypes.</li>
-          </ul>
-          <div class="tech-tags">
-            <span>WPT System Design</span>
-            <span>SiC Inverter</span>
-            <span>Boost PFC</span>
-            <span>KiCad PCB</span>
-            <span>Hardware Validation</span>
-            <span>Control Algorithm</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Job 2 -->
-      <div class="exp-item">
-        <div class="exp-dot"></div>
-        <div class="exp-card">
-          <div class="exp-meta">
-            <span class="exp-date">Jan 2022 — Apr 2024</span>
-            <span class="exp-badge">Graduate Research</span>
-          </div>
-          <div class="exp-role">Graduate Research Assistant</div>
-          <a href="https://engineering.ontariotechu.ca/steer/index.php" target="_blank" class="exp-company">
-            STEER Group · Ontario Tech University, Oshawa, ON
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
-          <ul class="exp-bullets">
-            <li>End-to-end R&amp;D of a high-efficiency resonant WPT system with novel compensation network and phase-shift CC/CV control — funded by NSERC &amp; MITACS with industry partner.</li>
-            <li>Design, modeling, simulation, and development of DC-DC converters, inverters, rectifiers, and resonant converters for EV wireless charging.</li>
-            <li>Experimental testing and validation of WPT systems across various coil configurations and compensation topologies.</li>
-          </ul>
-          <div class="tech-tags">
-            <span>Hybrid Compensation Network</span>
-            <span>Phase-Shift Control</span>
-            <span>Misalignment Tolerant WPT</span>
-            <span>PSIM / PLECS</span>
-            <span>NSERC / MITACS</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Job 3 -->
-      <div class="exp-item">
-        <div class="exp-dot"></div>
-        <div class="exp-card">
-          <div class="exp-meta">
-            <span class="exp-date">Jun 2022 — Apr 2023</span>
-            <span class="exp-badge">Internship</span>
-          </div>
-          <div class="exp-role">Electrical Engineering Intern</div>
-          <a href="https://www.oshawapower.ca/" target="_blank" class="exp-company">
-            Oshawa Power · Oshawa, ON
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
-          <ul class="exp-bullets">
-            <li>Built regression models to forecast energy production and revenue from solar PV and wind turbine generation systems; produced detailed analysis reports.</li>
-            <li>Assisted in preparing micro-embedded generation connection applications for net-metering systems.</li>
-            <li>Reviewed and approved major and non-major equipment based on compliance of test reports with industry standards.</li>
-          </ul>
-          <div class="tech-tags">
-            <span>Regression Modelling</span>
-            <span>Renewable Energy Forecasting</span>
-            <span>Net Metering Applications</span>
-            <span>Standards Compliance</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== PROJECTS ===================== -->
-<section id="projects">
-  <div class="container">
-    <div class="reveal">
-      <div class="sec-label">Projects</div>
-      <h2 class="sec-title">Hardware I've <em>Built</em></h2>
-    </div>
-
-    <div class="projects-grid">
-      <div class="proj-card">
-        <div class="proj-icon">⚡</div>
-        <div class="proj-title">7.7 kW WPT System for EVs</div>
-        <div class="proj-desc">
-          End-to-end development of a wireless power transfer system targeting J2954 compliance.
-          Includes a custom DD coil pair, hybrid LCC-S compensation network, SiC full-bridge inverter,
-          and closed-loop phase-shift CC/CV control. Achieved &gt;93% DC-DC efficiency at nominal gap.
-        </div>
-        <div class="proj-tags">
-          <span>WPT</span><span>SiC</span><span>LCC-S</span><span>Phase-Shift Control</span><span>KiCad</span>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-icon">🔁</div>
-        <div class="proj-title">Boost PFC Rectifier (UCC28056)</div>
-        <div class="proj-desc">
-          Single-phase bridgeless totem-pole PFC rectifier targeting 300 V DC output with
-          UCC28056 boundary-mode IC. Full KiCad layout with star-point PGND/SGND separation,
-          ZCD winding polarity validation, and detailed 9-stage test plan.
-        </div>
-        <div class="proj-tags">
-          <span>PFC</span><span>UCC28056</span><span>KiCad</span><span>Variac Test</span>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-icon">🔥</div>
-        <div class="proj-title">SiC MOSFET Thermal Analysis (SCTWA70N120G2V-4)</div>
-        <div class="proj-desc">
-          Thermal budget and loss estimation for SCTWA70N120G2V-4 in full-bridge topology.
-          Includes switching loss from datasheet Eoss/Qoss, conduction loss modelling, heatsink
-          sizing, and gate driver compatibility analysis with STGAP3SXS (+17/−4.7 V, Kelvin source).
-        </div>
-        <div class="proj-tags">
-          <span>SiC MOSFET</span><span>Thermal Analysis</span><span>Gate Driver</span><span>Full-Bridge</span>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-icon">📡</div>
-        <div class="proj-title">Misalignment-Tolerant WPT Coil Design</div>
-        <div class="proj-desc">
-          FEMM-based coil parameter extraction and compensation network design for EV WPT under
-          lateral misalignment. Validated across ±15 cm offset with &lt;8% variation in output power
-          using adaptive phase-shift control.
-        </div>
-        <div class="proj-tags">
-          <span>FEMM</span><span>Misalignment Tolerance</span><span>Coil Design</span><span>Resonant WPT</span>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-icon">🔌</div>
-        <div class="proj-title">Solar PV &amp; Wind Regression Forecasting</div>
-        <div class="proj-desc">
-          Built multivariate regression models to forecast energy production and revenue for Oshawa
-          Power's distributed generation portfolio. Delivered automated report generation pipeline
-          and connected micro-embedded generation applications.
-        </div>
-        <div class="proj-tags">
-          <span>Python</span><span>Regression</span><span>PV Forecasting</span><span>Wind Energy</span>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-icon">🧲</div>
-        <div class="proj-title">Hybrid LCC-LCC Compensation Network</div>
-        <div class="proj-desc">
-          Novel hybrid compensation network for bidirectional WPT achieving near-constant current
-          source behaviour across load variation. Analytical design, PSIM simulation, and full
-          hardware prototype validated up to 3 kW.
-        </div>
-        <div class="proj-tags">
-          <span>LCC-LCC</span><span>PSIM</span><span>Bidirectional WPT</span><span>CC Control</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== PUBLICATIONS ===================== -->
-<section id="publications">
-  <div class="container">
-    <div class="reveal">
-      <div class="sec-label">Research</div>
-      <h2 class="sec-title">Published <em>Work</em></h2>
-    </div>
-
-    <div class="pub-list">
-      <div class="pub-item">
-        <span class="pub-num">[01]</span>
-        <div>
-          <div class="pub-title">A Hybrid LCC Compensation Network for Misalignment-Tolerant Wireless EV Charging</div>
-          <div class="pub-venue">
-            IEEE Transactions on Power Electronics — 
-            <a href="https://scholar.google.ca/citations?hl=en&user=j9gA7tEAAAAJ" target="_blank">Google Scholar ↗</a>
-          </div>
-        </div>
-      </div>
-      <div class="pub-item">
-        <span class="pub-num">[02]</span>
-        <div>
-          <div class="pub-title">Phase-Shift Control for CC/CV Wireless Charging of EV Batteries</div>
-          <div class="pub-venue">IEEE Applied Power Electronics Conference (APEC)</div>
-        </div>
-      </div>
-      <div class="pub-item">
-        <span class="pub-num">[03]</span>
-        <div>
-          <div class="pub-title">Coil Design and Compensation Network Optimization for High-Efficiency WPT Systems</div>
-          <div class="pub-venue">IEEE Transportation Electrification Conference (ITEC)</div>
-        </div>
-      </div>
-      <div class="pub-item">
-        <span class="pub-num">[04]</span>
-        <div>
-          <div class="pub-title">Resonant Converter Design for Wireless Power Transfer in E-Bike Applications</div>
-          <div class="pub-venue">IEEE PELS Workshop on Emerging Technologies (WoW)</div>
-        </div>
-      </div>
-      <div class="pub-item">
-        <span class="pub-num">[05]</span>
-        <div>
-          <div class="pub-title">Renewable Energy Forecasting Using Regression-Based Models for Distributed Generation</div>
-          <div class="pub-venue">IEEE Canadian Conference on Electrical and Computer Engineering (CCECE)</div>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:1.5rem; reveal">
-      <a href="https://scholar.google.ca/citations?hl=en&user=j9gA7tEAAAAJ" target="_blank" class="btn-ghost" style="display:inline-flex;">
-        View all on Google Scholar
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== FOOTER / CONTACT ===================== -->
-<footer id="contact" class="site-footer">
-  <div class="container">
-    <div class="footer-cta reveal">
-      <div class="footer-cta-label">// Let's collaborate</div>
-      <h2 class="footer-headline">Ready to build<br><span>something great?</span></h2>
-      <div class="cta-btn-group">
-        <button class="btn-primary" onclick="openModal()">
-          Get In Touch
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
-        <a href="Niranjan_Shrestha_Resume.pdf" target="_blank" class="btn-ghost">Download Resume</a>
-      </div>
-    </div>
-
-    <div class="footer-grid reveal">
-      <div class="footer-brand">
-        <div class="nav-logo" style="font-size:1rem;">NS<span style="color:var(--copper)">.</span></div>
-        <p>Power Electronics Engineer focused on wireless charging, high-efficiency converters, and SiC-based power systems.</p>
-      </div>
-
-      <div class="footer-col">
-        <div class="footer-col-title">Navigation</div>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#publications">Publications</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <div class="footer-col-title">Connect</div>
-        <ul>
-          <li><a href="https://www.linkedin.com/in/niranjan-shrestha-a89482137/" target="_blank">LinkedIn</a></li>
-          <li><a href="https://scholar.google.ca/citations?hl=en&user=j9gA7tEAAAAJ" target="_blank">Google Scholar</a></li>
-          <li><a href="https://github.com/Niranjan1012" target="_blank">GitHub</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <div class="footer-col-title">Resources</div>
-        <ul>
-          <li><a href="Niranjan_Shrestha_Resume.pdf" target="_blank">Resume PDF</a></li>
-          <li><a href="#contact" onclick="openModal()">Contact Form</a></li>
-        </ul>
-        <div style="margin-top:1.2rem;">
-          <div class="footer-col-title">Based In</div>
-          <span style="font-size:0.9rem; color:var(--text-2);">Oshawa, ON, Canada</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="copyright reveal">
-      <span>&copy; 2026 Niranjan Shrestha. All rights reserved.</span>
-      <span>Built with HTML &amp; CSS · Hosted on <a href="https://github.com/Niranjan1012" target="_blank">GitHub Pages</a></span>
-    </div>
-  </div>
 </footer>
-
-<!-- ===================== CONTACT MODAL ===================== -->
-<div class="modal-overlay" id="contactModal" onclick="handleOverlayClick(event)">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
-    <div class="modal-title">Let's Talk</div>
-    <div class="modal-sub">Fill out the form and I'll get back to you within 24 hours.</div>
-
-    <form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
-      <input type="hidden" name="access_key" value="5ff7a134-ea4b-4229-8128-0f9af496729e" />
-      <input type="hidden" name="redirect" value="https://Niranjan1012.github.io/" />
-
-      <div class="form-row">
-        <div class="f-group">
-          <label class="f-label">Inquiry Type <span>*</span></label>
-          <select name="Inquiry Type" class="f-control" required>
-            <option value="" disabled selected>Please select</option>
-            <option>Job Opportunity</option>
-            <option>Consulting</option>
-            <option>Networking</option>
-            <option>Other</option>
-          </select>
+    
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <h2 class="modal-title">Contact Us</h2>
+            
+            <form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+                
+                <input type="hidden" name="access_key" value="5ff7a134-ea4b-4229-8128-0f9af496729e">
+                <input type="hidden" name="redirect" value="https://Niranjan1012.github.io/">
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Inquiry Type <span>*</span></label>
+                        <select name="Inquiry Type" class="form-control" required>
+                            <option value="" disabled selected>Please select</option>
+                            <option value="Job Opportunity">Job Opportunity</option>
+                            <option value="Consulting">Consulting</option>
+                            <option value="Networking">Networking</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Name <span>*</span></label>
+                        <input type="text" name="Name" class="form-control" placeholder="Name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email <span>*</span></label>
+                        <input type="email" name="Email" class="form-control" placeholder="Email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Phone (Optional)</label>
+                        <input type="tel" name="Phone" class="form-control" placeholder="Phone Number">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>Message <span>*</span></label>
+                        <textarea name="Message" class="form-control" placeholder="Message" required></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>Attachments</label>
+                        <div class="file-upload-wrapper">
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Choose file or drag here</p>
+                            <p style="color: #94a3b8; font-size: 0.8rem;">Supported format: JPG, JPEG, PNG, PDF.</p>
+                            <input type="file" name="attachment" accept=".jpg, .jpeg, .png, .pdf">
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
         </div>
-        <div class="f-group">
-          <label class="f-label">Name <span>*</span></label>
-          <input type="text" name="Name" class="f-control" placeholder="Your name" required />
-        </div>
-      </div>
+    </div>
 
-      <div class="form-row">
-        <div class="f-group">
-          <label class="f-label">Email <span>*</span></label>
-          <input type="email" name="Email" class="f-control" placeholder="your@email.com" required />
-        </div>
-        <div class="f-group">
-          <label class="f-label">Phone</label>
-          <input type="tel" name="Phone" class="f-control" placeholder="+1 (416) 000-0000" />
-        </div>
-      </div>
+    <script>
+        const modal = document.getElementById('contactModal');
 
-      <div class="form-row single">
-        <div class="f-group">
-          <label class="f-label">Message <span>*</span></label>
-          <textarea name="Message" class="f-control" placeholder="Tell me about your project or opportunity…" required></textarea>
-        </div>
-      </div>
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevents scrolling behind the modal
+        }
 
-      <div class="form-row single">
-        <div class="f-group">
-          <label class="f-label">Attachment</label>
-          <div class="upload-zone">
-            <p>Drop file here or click to browse</p>
-            <p style="font-size:0.75rem; margin-top:0.3rem; color:var(--text-3);">PDF, PNG, JPG — max 5 MB</p>
-            <input type="file" name="attachment" accept=".jpg,.jpeg,.png,.pdf" />
-          </div>
-        </div>
-      </div>
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
 
-      <button type="submit" class="submit-btn">Send Message →</button>
-    </form>
-  </div>
-</div>
+        // Close modal if clicked outside the white box
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
 
-<!-- ===================== SCRIPTS ===================== -->
-<script>
-/* ── Circuit-board canvas background ── */
-(function(){
-  const canvas = document.getElementById('circuit-canvas');
-  const ctx = canvas.getContext('2d');
-  let W, H;
-
-  const COPPER = 'rgba(200,126,40,';
-  const TEAL   = 'rgba(45,212,191,';
-
-  function resize(){
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  /* Generate random horizontal/vertical circuit traces */
-  const traces = [];
-  function initTraces(){
-    traces.length = 0;
-    const count = Math.floor(W / 80);
-    for(let i = 0; i < count; i++){
-      traces.push({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        dir: Math.random() > 0.5 ? 'h' : 'v',
-        len: 60 + Math.random() * 180,
-        col: Math.random() > 0.7 ? TEAL : COPPER,
-        alpha: 0.15 + Math.random() * 0.35,
-        speed: 0.3 + Math.random() * 0.6,
-        progress: Math.random(),
-      });
-    }
-  }
-  initTraces();
-  window.addEventListener('resize', initTraces);
-
-  function draw(){
-    ctx.clearRect(0, 0, W, H);
-
-    traces.forEach(t => {
-      t.progress += t.speed / (t.len * 60);
-      if(t.progress > 1) t.progress = 0;
-
-      const p = t.progress;
-      const x1 = t.dir === 'h' ? t.x : t.x;
-      const y1 = t.dir === 'v' ? t.y : t.y;
-      const x2 = t.dir === 'h' ? t.x + t.len * p : t.x;
-      const y2 = t.dir === 'v' ? t.y + t.len * p : t.y;
-
-      ctx.beginPath();
-      ctx.moveTo(x1, y1);
-      ctx.lineTo(x2, y2);
-      ctx.strokeStyle = t.col + t.alpha + ')';
-      ctx.lineWidth = 1;
-      ctx.stroke();
-
-      // dot at head
-      ctx.beginPath();
-      ctx.arc(x2, y2, 2, 0, Math.PI * 2);
-      ctx.fillStyle = t.col + (t.alpha * 2) + ')';
-      ctx.fill();
-    });
-
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
-
-/* ── Nav toggle (mobile) ── */
-function toggleNav(){
-  document.getElementById('navLinks').classList.toggle('mobile-open');
-}
-function closeNav(){
-  document.getElementById('navLinks').classList.remove('mobile-open');
-}
-
-/* ── Modal ── */
-function openModal(){
-  document.getElementById('contactModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal(){
-  document.getElementById('contactModal').classList.remove('active');
-  document.body.style.overflow = '';
-}
-function handleOverlayClick(e){
-  if(e.target === document.getElementById('contactModal')) closeModal();
-}
-
-/* ── Scroll Reveal ── */
-const revealEls = document.querySelectorAll('.reveal, .exp-item, .proj-card, .pub-item');
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if(e.isIntersecting) e.target.classList.add('visible');
-  });
-}, { threshold: 0.1 });
-revealEls.forEach(el => revealObs.observe(el));
-
-/* ── Skill bars (triggered by IntersectionObserver) ── */
-const skillWrap = document.getElementById('skillsWrapper');
-const skillObs = new IntersectionObserver((entries) => {
-  if(entries[0].isIntersecting){
-    document.querySelectorAll('.skill-bar-fill').forEach(bar => {
-      bar.style.width = bar.dataset.w + '%';
-    });
-    skillObs.disconnect();
-  }
-}, { threshold: 0.3 });
-skillObs.observe(skillWrap);
-
-/* ── Counter animation for stat numbers ── */
-function animateCount(el){
-  const target = parseFloat(el.dataset.count);
-  const suffix = el.dataset.suffix || '';
-  const prefix = el.dataset.prefix || '';
-  const isDecimal = target % 1 !== 0;
-  let start = null;
-  const duration = 1600;
-
-  function step(ts){
-    if(!start) start = ts;
-    const elapsed = ts - start;
-    const progress = Math.min(elapsed / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const val = eased * target;
-    el.textContent = prefix + (isDecimal ? val.toFixed(1) : Math.floor(val)) + suffix;
-    if(progress < 1) requestAnimationFrame(step);
-    else el.textContent = prefix + (isDecimal ? target.toFixed(1) : target) + suffix;
-  }
-  requestAnimationFrame(step);
-}
-
-const statsObs = new IntersectionObserver((entries) => {
-  if(entries[0].isIntersecting){
-    document.querySelectorAll('.stat-num[data-count]').forEach(animateCount);
-    statsObs.disconnect();
-  }
-}, { threshold: 0.5 });
-const statsStrip = document.querySelector('.stats-strip');
-if(statsStrip) statsObs.observe(statsStrip);
-
-/* ── Subtle parallax on hero ── */
-document.addEventListener('mousemove', e => {
-  const photo = document.querySelector('.hero-photo-frame');
-  if(!photo) return;
-  const xFrac = (e.clientX / window.innerWidth - 0.5) * 10;
-  const yFrac = (e.clientY / window.innerHeight - 0.5) * 6;
-  photo.style.transform = `perspective(800px) rotateY(${xFrac}deg) rotateX(${-yFrac}deg)`;
-});
-</script>
+        // Add this to your existing script section
+        function toggleMobileMenu() {
+            // Only toggle if we are on a small screen
+            if (window.innerWidth <= 768) {
+                const nav = document.getElementById('navLinks');
+                nav.classList.toggle('mobile-active');
+            }
+        }
+    </script>
 
 </body>
 </html>
